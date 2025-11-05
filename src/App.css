@@ -1,0 +1,10 @@
+.App {
+  min-height: 100vh;
+  position: relative;
+}
+
+section {
+  position: relative;
+  z-index: 1;
+}
+
