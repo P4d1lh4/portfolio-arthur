@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaGithub, FaLinkedin } from 'react-icons/fa';
 import './Contact.css';
 
 const Contact = () => {
@@ -9,26 +9,6 @@ const Contact = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aqui você pode adicionar a lógica de envio do formulário
-    const mailtoLink = `mailto:arthur.ppadilha09@gmail.com?subject=Contato de ${formData.name}&body=${formData.message}%0D%0A%0D%0AEmail: ${formData.email}`;
-    window.location.href = mailtoLink;
-  };
 
   const contactInfo = [
     {
@@ -42,12 +22,6 @@ const Contact = () => {
       title: 'Telefone',
       value: '(81) 99708-7882',
       link: 'tel:+5581997087882',
-    },
-    {
-      icon: <FaMapMarkerAlt />,
-      title: 'Localização',
-      value: 'Boa Viagem, Recife - PE',
-      link: null,
     },
   ];
 
@@ -132,60 +106,6 @@ const Contact = () => {
               </div>
             </motion.div>
           </motion.div>
-
-          <motion.form
-            className="contact-form"
-            variants={itemVariants}
-            onSubmit={handleSubmit}
-          >
-            <div className="form-group">
-              <label htmlFor="name">Nome</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                placeholder="Seu nome"
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="seu.email@exemplo.com"
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="message">Mensagem</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows="5"
-                placeholder="Sua mensagem..."
-              ></textarea>
-            </div>
-
-            <motion.button
-              type="submit"
-              className="submit-btn"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Enviar Mensagem
-            </motion.button>
-          </motion.form>
         </div>
       </motion.div>
     </section>

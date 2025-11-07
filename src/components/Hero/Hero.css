@@ -164,25 +164,23 @@
   color: var(--text-secondary);
   transition: all 0.3s ease;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.scroll-indicator {
-  font-size: 1.5rem;
+.social-icon:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 4px;
+}
+
+.copy-status {
+  margin-top: -1rem;
+  margin-bottom: 3rem;
   color: var(--primary-color);
-  cursor: pointer;
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {

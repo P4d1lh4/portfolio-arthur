@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 import './Projects.css';
 
 const Projects = () => {
@@ -17,6 +17,7 @@ const Projects = () => {
         'Desenvolvimento de uma plataforma completa para análise de dados de entregas, com foco em otimizar a eficiência e a produtividade dos entregadores. O sistema inclui um dashboard interativo para visualização de métricas em tempo real, análise de performance de motoristas e um assistente de IA para insights e recomendações.',
       technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Recharts', 'Mapbox', 'Node.js'],
       gradient: 'var(--gradient-1)',
+      codeUrl: 'https://github.com/P4d1lh4/Projeto-para-entregadores',
     },
     {
       title: 'Sistema de Gestão Acadêmica',
@@ -24,6 +25,7 @@ const Projects = () => {
         'Desenvolvi uma aplicação web completa com Flask para o gerenciamento de alunos e módulos. O sistema permite cadastrar, editar, pesquisar e excluir alunos, além de criar e gerenciar módulos de ensino, com todas as informações armazenadas em um banco de dados SQLite. O projeto foi projetado para ser "deployável" com Docker e Kubernetes.',
       technologies: ['Python', 'Flask', 'SQLite', 'HTML', 'CSS', 'JavaScript', 'Docker', 'Kubernetes'],
       gradient: 'var(--gradient-2)',
+      codeUrl: 'https://github.com/P4d1lh4/Aplica-o-Professor',
     },
   ];
 
@@ -85,7 +87,7 @@ const Projects = () => {
 
                 <div className="project-links">
                   <motion.a
-                    href="https://github.com/P4d1lh4"
+                    href={project.codeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="project-link"
@@ -93,14 +95,6 @@ const Projects = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <FaGithub /> Código
-                  </motion.a>
-                  <motion.a
-                    href="#"
-                    className="project-link"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <FaExternalLinkAlt /> Demo
                   </motion.a>
                 </div>
               </div>

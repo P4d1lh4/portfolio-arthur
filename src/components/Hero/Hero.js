@@ -1,9 +1,59 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import './Hero.css';
 
+const EMAIL_ADDRESS = 'arthur.ppadilha09@gmail.com';
+
 const Hero = () => {
+  const [copyStatus, setCopyStatus] = useState('');
+  const copyTimeoutRef = useRef(null);
+
+  const clearCopyTimeout = () => {
+    if (copyTimeoutRef.current) {
+      clearTimeout(copyTimeoutRef.current);
+      copyTimeoutRef.current = null;
+    }
+  };
+
+  const handleCopyEmail = async () => {
+    clearCopyTimeout();
+
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(EMAIL_ADDRESS);
+      } else if (typeof document !== 'undefined') {
+        const textArea = document.createElement('textarea');
+        textArea.value = EMAIL_ADDRESS;
+        textArea.setAttribute('readonly', '');
+        textArea.style.position = 'absolute';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      } else {
+        throw new Error('Clipboard API not available');
+      }
+
+      setCopyStatus('Email copiado!');
+    } catch (error) {
+      console.error('Erro ao copiar email:', error);
+      setCopyStatus('Não foi possível copiar o email. Tente novamente.');
+    } finally {
+      copyTimeoutRef.current = setTimeout(() => {
+        setCopyStatus('');
+        copyTimeoutRef.current = null;
+      }, 3000);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      clearCopyTimeout();
+    };
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -93,26 +143,28 @@ const Hero = () => {
           >
             <FaLinkedin />
           </motion.a>
-          <motion.a
-            href="mailto:arthur.ppadilha09@gmail.com"
+          <motion.button
+            type="button"
+            onClick={handleCopyEmail}
             className="social-icon"
             whileHover={{ y: -5, color: '#667eea' }}
+            aria-label="Copiar email"
+            title="Copiar email"
           >
             <FaEnvelope />
-          </motion.a>
+          </motion.button>
         </motion.div>
 
-        <motion.div
-          className="scroll-indicator"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 10, 0] }}
-          transition={{
-            opacity: { delay: 2 },
-            y: { repeat: Infinity, duration: 1.5 },
-          }}
-        >
-          <FaArrowDown />
-        </motion.div>
+        {copyStatus && (
+          <motion.span
+            className="copy-status"
+            role="status"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            {copyStatus}
+          </motion.span>
+        )}
       </motion.div>
     </section>
   );
