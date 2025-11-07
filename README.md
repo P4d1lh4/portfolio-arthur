@@ -82,6 +82,89 @@ yarn build
 
 Os arquivos otimizados estarão na pasta `build/`
 
+## 🚀 Deploy no GitHub Pages
+
+Este projeto está configurado para deploy automático no GitHub Pages. Siga os passos abaixo:
+
+### 1️⃣ Preparação do Repositório
+
+Certifique-se de que seu código está em um repositório GitHub:
+
+```bash
+# Se ainda não inicializou o Git
+git init
+git add .
+git commit -m "Initial commit"
+
+# Conecte ao repositório remoto
+git remote add origin https://github.com/P4d1lh4/portfolio-arthur.git
+git branch -M main
+git push -u origin main
+```
+
+### 2️⃣ Deploy Automático
+
+Execute o comando de deploy:
+
+```bash
+npm run deploy
+```
+
+Este comando irá:
+- ✅ Criar um build otimizado do projeto
+- ✅ Criar/atualizar a branch `gh-pages`
+- ✅ Fazer push automático para o GitHub
+
+### 3️⃣ Configurar GitHub Pages
+
+1. Acesse seu repositório no GitHub
+2. Vá em **Settings** > **Pages**
+3. Em **Source**, selecione:
+   - Branch: `gh-pages`
+   - Pasta: `/ (root)`
+4. Clique em **Save**
+
+### 4️⃣ Acessar seu Site
+
+Após alguns minutos, seu portfólio estará disponível em:
+**https://P4d1lh4.github.io/portfolio-arthur**
+
+### 🔄 Atualizações Futuras
+
+Para atualizar seu portfólio online, basta:
+
+```bash
+# Faça suas alterações
+git add .
+git commit -m "Descrição das alterações"
+git push origin main
+
+# Deploy no GitHub Pages
+npm run deploy
+```
+
+### ⚙️ Configurações Importantes
+
+O arquivo `package.json` já está configurado com:
+- **homepage**: URL do GitHub Pages
+- **predeploy**: Build automático antes do deploy
+- **deploy**: Publicação na branch gh-pages
+
+### 🔍 Troubleshooting
+
+**Problema: Site não carrega corretamente**
+- Verifique se a `homepage` no `package.json` está correta
+- Certifique-se de que a branch `gh-pages` foi criada
+- Aguarde alguns minutos após o deploy
+
+**Problema: Erro 404**
+- Verifique se o GitHub Pages está ativado nas configurações
+- Confirme se a branch selecionada é `gh-pages`
+
+**Problema: Páginas em branco**
+- Certifique-se de que o build foi bem-sucedido
+- Verifique o console do navegador por erros
+
 ## 📂 Estrutura do Projeto
 
 ```
