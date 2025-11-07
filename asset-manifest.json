@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/portfolio-arthur/static/css/main.ec866104.css",
+    "main.js": "/portfolio-arthur/static/js/main.824c4fc2.js",
+    "index.html": "/portfolio-arthur/index.html",
+    "main.ec866104.css.map": "/portfolio-arthur/static/css/main.ec866104.css.map",
+    "main.824c4fc2.js.map": "/portfolio-arthur/static/js/main.824c4fc2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ec866104.css",
+    "static/js/main.824c4fc2.js"
+  ]
+}
