@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaBriefcase, FaChalkboardTeacher } from 'react-icons/fa';
+import { FaBriefcase, FaChalkboardTeacher, FaRobot, FaUsers } from 'react-icons/fa';
 import './Experience.css';
 
 const Experience = () => {
@@ -31,12 +31,48 @@ const Experience = () => {
     },
     {
       icon: <FaChalkboardTeacher />,
+      title: 'Monitor em Fundamentos de Programação',
+      company: 'CESAR School',
+      period: '1º Período',
+      description:
+        'Participei como facilitador da matéria de programação do 1º período envolvendo as linguagens Portugol e Python, auxiliando em dúvidas e passando exercícios para melhor aprendizagem.',
+      skills: ['Python', 'Portugol', 'Ensino', 'Mentoria'],
+    },
+    {
+      icon: <FaChalkboardTeacher />,
       title: 'Auxiliar de Professor',
       company: 'NExt',
       period: 'Anterior',
       description:
-        'Participei do processo de ensino dos fundamentos de programação na linguagem Python.',
-      skills: ['Python', 'Ensino', 'Mentoria'],
+        'Participei do processo de ensino dos fundamentos de programação na linguagem Python, com o objetivo de introduzir conceitos básicos da lógica computacional e de algoritmos.',
+      skills: ['Python', 'Ensino', 'Mentoria', 'Algoritmos'],
+    },
+    {
+      icon: <FaRobot />,
+      title: 'Palestrante e Oficineiro',
+      company: 'Olimpíada Brasileira de Robótica',
+      period: '2022',
+      description:
+        'Ministrei uma palestra com a temática de introdução ao Python. Criei uma oficina para crianças que estavam presentes na OBR e queriam aprender a usar modelo Lego voltado para a robótica.',
+      skills: ['Python', 'Robótica', 'Ensino', 'Lego'],
+    },
+    {
+      icon: <FaUsers />,
+      title: 'Semana de Imersão',
+      company: 'CESAR School',
+      period: '2022',
+      description:
+        'Ajudei na organização e monitoramento das atividades de imersão para novos alunos da faculdade CESAR School.',
+      skills: ['Organização', 'Liderança', 'Gestão de Eventos'],
+    },
+    {
+      icon: <FaChalkboardTeacher />,
+      title: 'Maratona de Inovação',
+      company: 'CESAR School',
+      period: '2022',
+      description:
+        'Ministrei uma palestra dinâmica e informativa sobre Frameworks durante um evento universitário aberto. Compartilhei meu conhecimento e insights com um público diversificado, abordando os conceitos fundamentais e a importância dos frameworks na tecnologia atual.',
+      skills: ['Frameworks', 'Palestras', 'Comunicação'],
     },
   ];
 

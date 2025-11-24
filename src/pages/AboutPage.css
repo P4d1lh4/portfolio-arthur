@@ -1,0 +1,361 @@
+.about-page {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.about-page-hero {
+  position: relative;
+  padding: 120px 20px 80px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  overflow: hidden;
+}
+
+.about-page-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(118, 75, 162, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.about-page-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.about-page-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+}
+
+.about-page-hero-subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-page-content {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-intro {
+  margin-bottom: 100px;
+}
+
+.intro-text {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 50px;
+  backdrop-filter: blur(10px);
+}
+
+.intro-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 30px;
+}
+
+.intro-paragraph {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+}
+
+.intro-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.intro-paragraph strong {
+  color: #a5b4fc;
+  font-weight: 600;
+}
+
+.interests-section,
+.soft-skills-section {
+  margin-bottom: 100px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.section-line {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  margin: 0 auto 20px;
+  border-radius: 2px;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.interest-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 30px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.interest-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.interest-icon {
+  font-size: 2.5rem;
+  color: #667eea;
+  margin-bottom: 20px;
+}
+
+.interest-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.interest-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+}
+
+.interest-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topic-tag {
+  background: rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(102, 126, 234, 0.4);
+  color: #a5b4fc;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.soft-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.soft-skill-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.soft-skill-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.soft-skill-icon {
+  font-size: 2rem;
+  color: #764ba2;
+  flex-shrink: 0;
+}
+
+.soft-skill-content {
+  flex: 1;
+}
+
+.soft-skill-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.soft-skill-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.closing-section {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 20px;
+  padding: 60px 50px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.closing-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.closing-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+
+.closing-text:last-of-type {
+  margin-bottom: 35px;
+}
+
+.cta-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.cta-button:hover {
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .about-page-hero {
+    padding: 100px 15px 60px;
+  }
+
+  .about-page-hero-title {
+    font-size: 2rem;
+  }
+
+  .about-page-hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .about-page-content {
+    padding: 60px 15px;
+  }
+
+  .about-intro {
+    margin-bottom: 60px;
+  }
+
+  .intro-text {
+    padding: 30px 25px;
+  }
+
+  .intro-title {
+    font-size: 1.8rem;
+  }
+
+  .intro-paragraph {
+    font-size: 1rem;
+  }
+
+  .interests-section,
+  .soft-skills-section {
+    margin-bottom: 60px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-description {
+    font-size: 1rem;
+  }
+
+  .interests-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .interest-card {
+    padding: 30px 20px;
+  }
+
+  .soft-skills-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .soft-skill-card {
+    padding: 25px 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .closing-section {
+    padding: 40px 25px;
+  }
+
+  .closing-title {
+    font-size: 1.6rem;
+  }
+
+  .closing-text {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    width: 100%;
+  }
+}

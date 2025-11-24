@@ -28,10 +28,14 @@
 .navbar-logo {
   font-size: 1.8rem;
   font-weight: 800;
-  color: var(--text-primary);
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 1px;
+}
+
+.navbar-logo a {
+  color: var(--text-primary);
+  text-decoration: none;
 }
 
 .logo-bracket {
@@ -52,6 +56,14 @@
   font-size: 1rem;
   position: relative;
   transition: color 0.3s ease;
+}
+
+.navbar-link.active {
+  color: var(--primary-color);
+}
+
+.navbar-link.active::after {
+  width: 100%;
 }
 
 .navbar-link::after {
@@ -100,6 +112,11 @@
   padding: 1rem;
   border-left: 3px solid transparent;
   transition: all 0.3s ease;
+}
+
+.mobile-menu-link.active {
+  border-left-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .mobile-menu-link:hover {

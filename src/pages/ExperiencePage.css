@@ -1,0 +1,317 @@
+.experience-page {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.experience-hero {
+  position: relative;
+  padding: 120px 20px 80px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  overflow: hidden;
+}
+
+.experience-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(118, 75, 162, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.experience-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(102, 126, 234, 0.5);
+  transform: translateX(-5px);
+}
+
+.experience-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+}
+
+.experience-hero-subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.experience-content {
+  padding: 80px 20px;
+}
+
+.experience-timeline {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.experience-item {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.experience-timeline-line {
+  position: absolute;
+  left: 40px;
+  top: 60px;
+  bottom: -60px;
+  width: 2px;
+  background: linear-gradient(180deg, #667eea 0%, rgba(102, 126, 234, 0.2) 100%);
+}
+
+.experience-item:last-child .experience-timeline-line {
+  display: none;
+}
+
+.experience-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+  margin-left: 100px;
+  position: relative;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.experience-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.experience-icon-wrapper {
+  position: absolute;
+  left: -60px;
+  top: 30px;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+  z-index: 2;
+}
+
+.experience-header-text {
+  flex: 1;
+}
+
+.experience-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.experience-company {
+  font-size: 1.3rem;
+  font-weight: 500;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+
+.experience-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.experience-period,
+.experience-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.experience-description {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 30px;
+}
+
+.experience-section {
+  margin-top: 30px;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.experience-list,
+.experience-achievements {
+  list-style: none;
+  padding: 0;
+}
+
+.experience-list li,
+.experience-achievements li {
+  padding-left: 30px;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  position: relative;
+}
+
+.experience-list li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.experience-achievements li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #764ba2;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.experience-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.skill-badge {
+  background: rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(102, 126, 234, 0.4);
+  color: #a5b4fc;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+  background: rgba(102, 126, 234, 0.3);
+  border-color: rgba(102, 126, 234, 0.6);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .experience-hero {
+    padding: 100px 15px 60px;
+  }
+
+  .experience-hero-title {
+    font-size: 2rem;
+  }
+
+  .experience-hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .experience-content {
+    padding: 60px 15px;
+  }
+
+  .experience-card {
+    margin-left: 0;
+    padding: 30px 20px;
+  }
+
+  .experience-icon-wrapper {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .experience-timeline-line {
+    display: none;
+  }
+
+  .experience-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .experience-title {
+    font-size: 1.5rem;
+  }
+
+  .experience-company {
+    font-size: 1.1rem;
+  }
+
+  .experience-meta {
+    justify-content: center;
+  }
+
+  .experience-description {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+}
