@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { FaGithub, FaArrowLeft, FaExternalLinkAlt, FaCode, FaStar } from 'react-icons/fa';
+import { FaGithub, FaArrowLeft, FaCode, FaStar } from 'react-icons/fa';
 import Footer from '../components/Footer/Footer';
 import './ProjectsPage.css';
 

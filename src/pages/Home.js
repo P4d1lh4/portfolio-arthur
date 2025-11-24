@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaBriefcase, FaProjectDiagram, FaEnvelope, FaUser, FaCode } from 'react-icons/fa';
+import { FaBriefcase, FaProjectDiagram, FaEnvelope, FaUser } from 'react-icons/fa';
 import Hero from '../components/Hero/Hero';
 import About from '../components/About/About';
 import Skills from '../components/Skills/Skills';
