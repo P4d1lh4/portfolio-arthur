@@ -9,14 +9,29 @@ const ParticlesBackground = () => {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
     let particles = [];
+    
+    // Detectar se é dispositivo móvel
+    const isMobile = window.innerWidth <= 768;
+    
+    // Limitar partículas e desabilitar conexões em mobile
+    const maxParticles = isMobile ? 30 : 100;
+    const enableConnections = !isMobile;
 
     const resizeCanvas = () => {
+      // Usar apenas a altura da viewport, não da página inteira
       canvas.width = window.innerWidth;
-      canvas.height = document.documentElement.scrollHeight;
+      canvas.height = window.innerHeight;
     };
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    
+    // Debounce do resize para melhor performance
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resizeCanvas, 100);
+    };
+    window.addEventListener('resize', handleResize);
 
     class Particle {
       constructor() {
@@ -48,21 +63,29 @@ const ParticlesBackground = () => {
 
     const init = () => {
       particles = [];
-      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 15000);
+      // Limitar número de partículas para melhor performance
+      const calculatedParticles = Math.floor((canvas.width * canvas.height) / 15000);
+      const numberOfParticles = Math.min(calculatedParticles, maxParticles);
       for (let i = 0; i < numberOfParticles; i++) {
         particles.push(new Particle());
       }
     };
 
     const connectParticles = () => {
+      // Pular conexões em mobile para melhorar performance
+      if (!enableConnections) return;
+      
+      const maxDistance = 120;
       for (let a = 0; a < particles.length; a++) {
-        for (let b = a; b < particles.length; b++) {
+        for (let b = a + 1; b < particles.length; b++) {
           const dx = particles[a].x - particles[b].x;
           const dy = particles[a].y - particles[b].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 120) {
-            ctx.strokeStyle = `rgba(102, 126, 234, ${0.15 * (1 - distance / 120)})`;
+          
+          // Otimização: verificar distância sem sqrt primeiro
+          const distanceSquared = dx * dx + dy * dy;
+          if (distanceSquared < maxDistance * maxDistance) {
+            const distance = Math.sqrt(distanceSquared);
+            ctx.strokeStyle = `rgba(102, 126, 234, ${0.15 * (1 - distance / maxDistance)})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
@@ -89,7 +112,8 @@ const ParticlesBackground = () => {
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimeout);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

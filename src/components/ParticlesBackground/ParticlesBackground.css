@@ -6,5 +6,15 @@
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  /* Melhorar performance com GPU */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Reduzir opacidade em mobile para melhorar performance visual */
+@media (max-width: 768px) {
+  .particles-canvas {
+    opacity: 0.6;
+  }
 }
 

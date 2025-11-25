@@ -181,18 +181,18 @@ const ExperiencePage = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1, // Reduzido de 0.2 para carregar mais rápido
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
+    hidden: { y: 30, opacity: 0 }, // Reduzido de 50 para animação mais leve
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.4, // Reduzido de 0.6 para animação mais rápida
       },
     },
   };
@@ -222,8 +222,7 @@ const ExperiencePage = () => {
           className="experience-timeline"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          animate="visible"
         >
           {experiences.map((exp, index) => (
             <motion.div

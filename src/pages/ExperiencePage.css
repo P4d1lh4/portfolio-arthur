@@ -86,12 +86,7 @@
 }
 
 .experience-timeline-line {
-  position: absolute;
-  left: 40px;
-  top: 60px;
-  bottom: -60px;
-  width: 2px;
-  background: linear-gradient(180deg, #667eea 0%, rgba(102, 126, 234, 0.2) 100%);
+  display: none;
 }
 
 .experience-item:last-child .experience-timeline-line {
@@ -313,5 +308,36 @@
 
   .section-title {
     font-size: 1.1rem;
+  }
+
+  /* Desabilitar animações pesadas em mobile */
+  .experience-card {
+    transform: none !important;
+    transition: none;
+  }
+
+  .experience-card:hover {
+    transform: none;
+  }
+
+  .skill-badge {
+    transition: none;
+  }
+
+  .skill-badge:hover {
+    transform: none;
+  }
+
+  /* Remover backdrop-filter em mobile (muito pesado) */
+  .experience-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(15, 23, 42, 0.95);
+  }
+
+  .back-button {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.15);
   }
 }
