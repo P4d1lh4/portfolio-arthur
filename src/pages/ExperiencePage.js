@@ -13,7 +13,7 @@ const ExperiencePage = () => {
       icon: <FaBriefcase />,
       title: 'Desenvolvedor Front-end',
       company: 'Seaway',
-      location: 'Remoto',
+      location: 'Recife, PE',
       period: 'Atual',
       startDate: '2024',
       description:
