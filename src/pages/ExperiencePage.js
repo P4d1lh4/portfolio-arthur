@@ -15,7 +15,7 @@ const ExperiencePage = () => {
       company: 'Seaway',
       location: 'Recife, PE',
       period: 'Atual',
-      startDate: '2024',
+      startDate: '2025',
       description:
         'Desenvolvimento na aplicação web com React, ajustando layouts, corrigindo erros e otimizando rotas do usuário. Trabalho focado em melhorar a experiência do usuário e performance da aplicação.',
       responsibilities: [
@@ -37,8 +37,8 @@ const ExperiencePage = () => {
       title: 'Desenvolvedor Full Stack',
       company: 'Estágio',
       location: 'Recife, PE',
-      period: '2023 - 2024',
-      startDate: '2023',
+      period: '05/25 - 07/25',
+      startDate: '2025',
       description:
         'Desenvolvimento de aplicações web com Node.js e React, criando APIs, interfaces responsivas e integrando com bancos de dados. Atuação em time ágil e manutenção de sistemas existentes.',
       responsibilities: [
