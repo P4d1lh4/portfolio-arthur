@@ -48,10 +48,10 @@ const About = () => {
           <motion.div className="about-text" variants={itemVariants}>
             <h3 className="about-subtitle">Objetivo</h3>
             <p className="about-description">
-              Desenvolver-me profissionalmente, aplicando meus conhecimentos e habilidades.
-              Fazer parte de uma equipe colaborativa e criativa que permita expandir meu
-              conjunto de habilidades e explorar novas áreas, de tal forma que colabore com
-              meu crescimento profissional e da instituição a qual fui engajado.
+              Desenvolver-me profissionalmente, aplicando meus conhecimentos em análise de dados 
+              e Business Intelligence. Busco fazer parte de uma equipe colaborativa e criativa que 
+              permita expandir meu conjunto de habilidades e explorar novas áreas, de tal forma que 
+              colabore com meu crescimento profissional e da instituição a qual fui engajado.
             </p>
           </motion.div>
 
@@ -60,20 +60,19 @@ const About = () => {
               <div className="focus-icon">
                 <FaChartLine />
               </div>
-              <h3 className="about-subtitle">
-                <span className="highlight-gradient">Foco em Análise de Dados</span>
+              <h3 className="about-subtitle" style={{ marginBottom: 0 }}>
+                <span className="highlight-gradient">Foco em Business Intelligence</span>
               </h3>
             </div>
             <p className="about-description">
-              Tenho um grande interesse e paixão pela área de <strong>análise de dados</strong>, 
-              buscando transformar dados brutos em insights valiosos que impulsionem decisões 
-              estratégicas. Minha experiência inclui o desenvolvimento de dashboards interativos, 
-              visualização de métricas em tempo real e análise de performance utilizando ferramentas 
-              como <strong>PowerBI</strong>, <strong>Python</strong> para análise de dados e 
-              bibliotecas como <strong>Pandas</strong> e <strong>NumPy</strong>. Estou constantemente 
-              aprimorando minhas habilidades em <strong>Data Science</strong>, <strong>Business 
-              Intelligence</strong> e técnicas de <strong>Machine Learning</strong> para agregar 
-              valor aos projetos em que atuo.
+              Tenho um grande interesse e paixão pela área de <strong>análise de dados</strong> e{' '}
+              <strong>Business Intelligence</strong>, buscando transformar dados brutos em insights 
+              valiosos que impulsionem decisões estratégicas. Minha experiência inclui o desenvolvimento 
+              de dashboards interativos, visualização de métricas em tempo real e análise de performance 
+              utilizando ferramentas como <strong>Power BI</strong>, <strong>SQL</strong> e{' '}
+              <strong>Python</strong> para análise de dados com bibliotecas como <strong>Pandas</strong> e{' '}
+              <strong>NumPy</strong>. Atualmente atuo como Estagiário de Analista de BI na Fiplan, 
+              desenvolvendo soluções completas no ciclo de vida de BI.
             </p>
           </motion.div>
 
@@ -84,15 +83,15 @@ const About = () => {
               </div>
               <h4 className="card-title">Formação</h4>
               <div className="card-content">
-                <p className="card-institution">Cesar School</p>
+                <p className="card-institution">CESAR School</p>
                 <p className="card-details">Ciência da Computação</p>
-                <p className="card-period">8º período • Desde 02/2022</p>
+                <p className="card-period">2022 - 2025</p>
               </div>
               <div className="card-divider"></div>
               <div className="card-content">
-                <p className="card-institution">Colégio Motivo</p>
-                <p className="card-details">Ensino Médio Completo</p>
-                <p className="card-period">02/2019 - 12/2020</p>
+                <p className="card-institution">Britanic Recife</p>
+                <p className="card-details">Curso de Inglês</p>
+                <p className="card-period">2011 - 2020 • Senior Intermediate</p>
               </div>
             </motion.div>
 
@@ -102,8 +101,8 @@ const About = () => {
               </div>
               <h4 className="card-title">Localização</h4>
               <div className="card-content">
-                <p className="card-details">Boa Viagem</p>
-                <p className="card-details">Recife - PE</p>
+                <p className="card-details">Recife</p>
+                <p className="card-details">Pernambuco - PE</p>
                 <p className="card-details">Brasil</p>
               </div>
             </motion.div>
@@ -124,7 +123,7 @@ const About = () => {
                       transition={{ duration: 1, delay: 0.5 }}
                     ></motion.div>
                   </div>
-                  <span className="language-level">Nativo</span>
+                  <span className="language-level">Nativo (C2)</span>
                 </div>
                 <div className="language-item">
                   <span className="language-name">Inglês</span>
@@ -132,11 +131,11 @@ const About = () => {
                     <motion.div
                       className="language-progress"
                       initial={{ width: 0 }}
-                      animate={inView ? { width: '85%' } : { width: 0 }}
+                      animate={inView ? { width: '80%' } : { width: 0 }}
                       transition={{ duration: 1, delay: 0.7 }}
                     ></motion.div>
                   </div>
-                  <span className="language-level">Avançado</span>
+                  <span className="language-level">Upper Intermediate (B2)</span>
                 </div>
               </div>
             </motion.div>

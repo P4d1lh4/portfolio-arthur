@@ -1,208 +1,243 @@
 .about {
   min-height: 100vh;
-  padding: var(--space-4xl) var(--space-xl);
+  padding: 100px 20px 80px;
   position: relative;
 }
 
 .about-container {
-  max-width: var(--max-width);
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 /* Section Header */
 .section-header {
-  margin-bottom: var(--space-3xl);
+  text-align: center;
+  margin-bottom: 60px;
 }
 
 .section-label {
   display: inline-block;
-  font-size: var(--text-sm);
+  font-size: 0.875rem;
   font-weight: 500;
-  color: var(--accent);
+  color: var(--primary-color);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: var(--space-sm);
+  margin-bottom: 10px;
 }
 
 .section-title {
-  font-size: var(--text-4xl);
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 15px;
+}
+
+.section-line {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  margin: 0 auto;
+  border-radius: 2px;
 }
 
 /* About Content */
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2xl);
+  gap: 30px;
 }
 
 /* Text Block */
 .about-text {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: var(--space-2xl);
-  border-radius: var(--radius-xl);
-  transition: border-color var(--transition-base);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .about-text:hover {
-  border-color: var(--border-hover);
+  border-color: rgba(102, 126, 234, 0.3);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .about-subtitle {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: var(--space-md);
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
 }
 
 .about-description {
-  font-size: var(--text-base);
-  line-height: 1.7;
-  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-/* Highlight Block */
-.about-highlight {
-  display: flex;
-  gap: var(--space-xl);
-  background: var(--surface);
-  border: 1px solid var(--accent-subtle);
-  padding: var(--space-2xl);
-  border-radius: var(--radius-xl);
+.about-description strong {
+  color: #a5b4fc;
+  font-weight: 600;
+}
+
+/* Focus Section - Business Intelligence */
+.about-focus {
+  background: rgba(102, 126, 234, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.3);
   position: relative;
   overflow: hidden;
 }
 
-.about-highlight::before {
+.about-focus::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 3px;
-  background: var(--accent);
+  width: 4px;
+  background: linear-gradient(180deg, #667eea, #764ba2);
 }
 
-.highlight-icon {
-  flex-shrink: 0;
+.focus-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.focus-icon {
   width: 56px;
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--text-2xl);
-  color: var(--accent);
-  background: var(--accent-subtle);
-  border-radius: var(--radius-lg);
+  font-size: 1.5rem;
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
 }
 
-.highlight-content {
-  flex: 1;
+.highlight-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.highlight-title {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: var(--space-md);
-}
-
-.highlight-description {
-  font-size: var(--text-base);
-  line-height: 1.7;
-  color: var(--text-secondary);
-}
-
-.highlight-description strong {
-  color: var(--accent-light);
-  font-weight: 500;
-}
+/* Highlight Block - Legacy styles removed, using .about-focus instead */
 
 /* Cards Grid */
 .about-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
+  gap: 25px;
+  margin-top: 20px;
 }
 
 .about-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: var(--space-xl);
-  border-radius: var(--radius-xl);
-  transition: all var(--transition-base);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .about-card:hover {
-  border-color: var(--border-hover);
+  border-color: rgba(102, 126, 234, 0.3);
+  background: rgba(255, 255, 255, 0.05);
   transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .card-header {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
 .card-icon {
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--text-xl);
-  color: var(--accent);
-  background: var(--accent-subtle);
-  border-radius: var(--radius-md);
+  font-size: 1.5rem;
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
+  margin-bottom: 15px;
 }
 
 .card-title {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--text-primary);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 8px;
 }
 
 .card-item {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: 4px;
+}
+
+.card-institution {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.card-details {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.card-period {
+  font-size: 0.9rem;
+  color: #667eea;
+  font-weight: 500;
 }
 
 .item-label {
-  font-size: var(--text-sm);
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: white;
 }
 
 .item-value {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .item-meta {
-  font-size: var(--text-xs);
-  color: var(--text-muted);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .card-divider {
   width: 100%;
   height: 1px;
-  background: var(--border);
+  background: rgba(255, 255, 255, 0.1);
+  margin: 15px 0;
 }
 
 /* Language Bar */
 .language-item {
-  margin-bottom: var(--space-md);
+  margin-bottom: 15px;
 }
 
 .language-item:last-child {
@@ -213,32 +248,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-sm);
+  margin-bottom: 8px;
 }
 
 .language-name {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
 }
 
 .language-level {
-  font-size: var(--text-xs);
-  color: var(--text-muted);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
 }
 
 .language-bar {
   width: 100%;
-  height: 4px;
-  background: var(--border);
-  border-radius: var(--radius-full);
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 5px;
 }
 
 .language-progress {
   height: 100%;
-  background: var(--accent);
-  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 10px;
 }
 
 /* Responsive */
@@ -250,27 +287,39 @@
 
 @media (max-width: 768px) {
   .about {
-    padding: var(--space-3xl) var(--space-lg);
+    padding: 80px 15px 60px;
   }
 
   .section-title {
-    font-size: var(--text-3xl);
+    font-size: 2rem;
   }
 
   .about-text,
   .about-highlight,
   .about-card {
-    padding: var(--space-lg);
+    padding: 25px;
   }
 
-  .about-highlight {
+  .about-focus {
+    padding-left: 25px;
+  }
+
+  .focus-header {
     flex-direction: column;
-    gap: var(--space-lg);
+    align-items: flex-start;
   }
 
-  .highlight-icon {
+  .focus-icon {
     width: 48px;
     height: 48px;
-    font-size: var(--text-xl);
+    font-size: 1.25rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .about-description {
+    font-size: 1rem;
   }
 }
