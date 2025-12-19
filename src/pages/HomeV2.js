@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaEnvelope, FaTerminal, FaCode, FaJava, FaHtml5, FaCss3Alt, FaGitAlt, FaNodeJs, FaDatabase, FaDocker } from 'react-icons/fa';

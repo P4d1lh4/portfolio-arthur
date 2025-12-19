@@ -70,7 +70,7 @@ export const ThemeProvider = ({ children }) => {
   // Apply theme on mount
   useEffect(() => {
     applyTheme(currentTheme);
-  }, []);
+  }, [currentTheme]);
 
   const toggleTheme = useCallback((themeName) => {
     if (themes[themeName]) {
