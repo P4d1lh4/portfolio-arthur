@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import ParticlesBackground from './components/ParticlesBackground/ParticlesBackground';
-import Home from './pages/Home';
-import AboutPage from './pages/AboutPage';
-import ExperiencePage from './pages/ExperiencePage';
-import ProjectsPage from './pages/ProjectsPage';
-import ContactPage from './pages/ContactPage';
+import { ThemeProvider } from './context/ThemeContext';
+import NavbarV2 from './components/Navbar/NavbarV2';
+import HomeV2 from './pages/HomeV2';
+import AboutPageV2 from './pages/AboutPageV2';
+import ExperiencePageV2 from './pages/ExperiencePageV2';
+import ProjectsPageV2 from './pages/ProjectsPageV2';
+import ContactPageV2 from './pages/ContactPageV2';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -20,27 +20,16 @@ function ScrollToTop() {
 }
 
 function AppContent() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <div className="App">
-      <ParticlesBackground />
-      <Navbar scrolled={scrolled} />
+      <div className="bg-grid"></div>
+      <NavbarV2 />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sobre" element={<AboutPage />} />
-        <Route path="/experiencias" element={<ExperiencePage />} />
-        <Route path="/projetos" element={<ProjectsPage />} />
-        <Route path="/contato" element={<ContactPage />} />
+        <Route path="/" element={<HomeV2 />} />
+        <Route path="/sobre" element={<AboutPageV2 />} />
+        <Route path="/experiencias" element={<ExperiencePageV2 />} />
+        <Route path="/projetos" element={<ProjectsPageV2 />} />
+        <Route path="/contato" element={<ContactPageV2 />} />
       </Routes>
     </div>
   );
@@ -48,10 +37,12 @@ function AppContent() {
 
 function App() {
   return (
-    <Router basename="/portfolio-arthur">
-      <ScrollToTop />
-      <AppContent />
-    </Router>
+    <ThemeProvider>
+      <Router basename="/portfolio-arthur">
+        <ScrollToTop />
+        <AppContent />
+      </Router>
+    </ThemeProvider>
   );
 }
 
