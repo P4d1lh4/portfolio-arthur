@@ -66,19 +66,18 @@ const About = () => {
             </div>
             <p className="about-description">
               Tenho um grande interesse e paixão pela área de <strong>análise de dados</strong> e{' '}
-              <strong>Business Intelligence</strong>, buscando transformar dados brutos em insights 
+              <strong>Data Science</strong>, buscando transformar dados brutos em insights 
               valiosos que impulsionem decisões estratégicas. Minha experiência inclui o desenvolvimento 
               de dashboards interativos, visualização de métricas em tempo real e análise de performance 
               utilizando ferramentas como <strong>Power BI</strong>, <strong>SQL</strong> e{' '}
               <strong>Python</strong> para análise de dados com bibliotecas como <strong>Pandas</strong> e{' '}
-              <strong>NumPy</strong>. Atualmente atuo como Estagiário de Analista de BI na Fiplan, 
-              desenvolvendo soluções completas no ciclo de vida de BI.
+              <strong>NumPy</strong>, desenvolvendo soluções completas para transformar dados em valor.
             </p>
           </motion.div>
 
           <div className="about-cards">
             <motion.div className="about-card" variants={itemVariants}>
-              <div className="card-icon">
+              <div className="card-icon"> 
                 <FaGraduationCap />
               </div>
               <h4 className="card-title">Formação</h4>

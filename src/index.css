@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,16 +7,31 @@
 }
 
 :root {
-  --primary-color: #667eea;
-  --secondary-color: #764ba2;
-  --accent-color: #f093fb;
-  --bg-dark: #0a0a0a;
-  --bg-secondary: #111111;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  /* Cyberpunk Theme (Default) */
+  --theme-primary: #00ff9f;
+  --theme-secondary: #ff00ff;
+  --theme-accent: #00ffff;
+  --theme-background: #0a0a0f;
+  --theme-surface: #12121a;
+  --theme-text: #ffffff;
+  --theme-text-muted: #888888;
+  
+  /* Legacy variables for compatibility */
+  --primary-color: var(--theme-primary);
+  --secondary-color: var(--theme-secondary);
+  --accent-color: var(--theme-accent);
+  --bg-dark: var(--theme-background);
+  --bg-secondary: var(--theme-surface);
+  --text-primary: var(--theme-text);
+  --text-secondary: var(--theme-text-muted);
+  --gradient-1: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-accent) 100%);
+  --gradient-2: linear-gradient(135deg, var(--theme-secondary) 0%, #f5576c 100%);
   --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
@@ -23,33 +40,208 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
+  background-color: var(--theme-background);
+  color: var(--theme-text);
   overflow-x: hidden;
+  line-height: 1.6;
 }
 
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
+code, pre, .mono {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-dark);
+  background: var(--theme-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 5px;
+  background: var(--theme-primary);
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--theme-primary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-color);
+  background: var(--theme-accent);
 }
 
-html {
-  scroll-behavior: smooth;
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-primary) var(--theme-background);
+}
+
+/* Selection */
+::selection {
+  background: var(--theme-primary);
+  color: var(--theme-background);
+}
+
+::-moz-selection {
+  background: var(--theme-primary);
+  color: var(--theme-background);
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+/* Link Styles */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--theme-primary);
+}
+
+/* Button Reset */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Image Reset */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* List Reset */
+ul, ol {
+  list-style: none;
+}
+
+/* Background Grid Pattern */
+.bg-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 159, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 159, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glow Effects */
+.glow {
+  box-shadow: 0 0 20px var(--theme-primary);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px var(--theme-primary),
+               0 0 20px var(--theme-primary),
+               0 0 40px var(--theme-primary);
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(18, 18, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Utility Classes */
+.text-gradient {
+  background: linear-gradient(135deg, 
+    var(--theme-primary), 
+    var(--theme-accent),
+    var(--theme-secondary)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.neon-border {
+  border: 1px solid var(--theme-primary);
+  box-shadow: 0 0 10px var(--theme-primary),
+              inset 0 0 10px rgba(0, 255, 159, 0.1);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 5px var(--theme-primary),
+                0 0 10px var(--theme-primary);
+  }
+  50% { 
+    box-shadow: 0 0 20px var(--theme-primary),
+                0 0 40px var(--theme-primary);
+  }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* CRT/Scanline Effect (optional) */
+.scanlines::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 50%,
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
+}
+
+/* Responsive utilities */
+.hide-mobile {
+  display: block;
+}
+
+.show-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .hide-mobile {
+    display: none;
+  }
+  
+  .show-mobile {
+    display: block;
+  }
 }
 
