@@ -6,6 +6,7 @@ import { SiPowerbi, SiPython, SiReact, SiJavascript, SiFlask, SiMysql, SiTypescr
 import Terminal from '../components/Terminal/Terminal';
 import GlitchText, { TypewriterText, ScrambleText, MatrixRain } from '../components/GlitchText/GlitchText';
 import FooterV2 from '../components/Footer/FooterV2';
+import { useLanguage } from '../context/LanguageContext';
 import './HomeV2.css';
 
 const FloatingIcon = ({ icon: Icon, delay, x, y }) => (
@@ -57,6 +58,7 @@ const SkillIcon = ({ icon: Icon, name, color, delay }) => (
 );
 
 const Home = () => {
+  const { t } = useLanguage();
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -78,12 +80,7 @@ const Home = () => {
     setShowWelcome(true);
   };
 
-  const roles = [
-    'Full Stack Developer',
-    'Data Science',
-    'Data Enthusiast',
-    'Problem Solver',
-  ];
+  const roles = t.home.roles;
 
   // Skills baseadas no currículo
   const skills = [
@@ -102,7 +99,7 @@ const Home = () => {
     { name: 'Docker', icon: FaDocker, color: '#2496ED' },
     { name: 'Kubernetes', icon: SiKubernetes, color: '#326CE5' },
     { name: 'PowerBI', icon: SiPowerbi, color: '#F2C811' },
-    { name: 'Banco de Dados', icon: FaDatabase, color: '#6366F1' },
+    { name: t.home.skillDbName, icon: FaDatabase, color: '#6366F1' },
   ];
 
   const floatingIcons = [
@@ -138,7 +135,7 @@ const Home = () => {
             transition={{ delay: 0.2 }}
           >
             <span className="badge-dot"></span>
-            <span>Disponível para oportunidades</span>
+            <span>{t.home.badge}</span>
           </motion.div>
 
           <motion.div
@@ -147,7 +144,7 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <span className="hero-greeting">Olá, eu sou</span>
+            <span className="hero-greeting">{t.home.greeting}</span>
             <h1 className="hero-name">
               <GlitchText text="Arthur Padilha" glitchOnHover continuous intensity="low" />
             </h1>
@@ -175,10 +172,15 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            Transformando <span className="highlight">dados</span> em{' '}
-            <span className="highlight">insights</span> e{' '}
-            <span className="highlight">código</span> em{' '}
-            <span className="highlight">soluções</span>.
+            {t.home.descriptionParts[0]}
+            <span className="highlight">{t.home.descriptionParts[1]}</span>
+            {t.home.descriptionParts[2]}
+            <span className="highlight">{t.home.descriptionParts[3]}</span>
+            {t.home.descriptionParts[4]}
+            <span className="highlight">{t.home.descriptionParts[5]}</span>
+            {t.home.descriptionParts[6]}
+            <span className="highlight">{t.home.descriptionParts[7]}</span>
+            {t.home.descriptionParts[8]}
           </motion.p>
 
           {/* Code Block Preview */}
@@ -207,15 +209,15 @@ const Home = () => {
               </CodeLine>
               <CodeLine delay={1.3}>
                 <span className="code-property">  role:</span>{' '}
-                <span className="code-string">"Full Stack Developer"</span>,
+                <span className="code-string">"{t.home.code.role}"</span>,
               </CodeLine>
               <CodeLine delay={1.4}>
                 <span className="code-property">  focus:</span>{' '}
-                <span className="code-string">"Business Intelligence"</span>,
+                <span className="code-string">"{t.home.code.focus}"</span>,
               </CodeLine>
               <CodeLine delay={1.5}>
                 <span className="code-property">  passion:</span>{' '}
-                <span className="code-string">"Transformar dados em valor"</span>,
+                <span className="code-string">"{t.home.code.passion}"</span>,
               </CodeLine>
               <CodeLine delay={1.6}>
                 <span className="code-bracket">{'}'}</span>;
@@ -237,7 +239,7 @@ const Home = () => {
               whileTap={{ scale: 0.95 }}
             >
               <FaTerminal />
-              <span>Abrir Terminal</span>
+              <span>{t.home.openTerminal}</span>
             </motion.button>
             
             <Link to="/projetos">
@@ -247,7 +249,7 @@ const Home = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <FaCode />
-                <span>Ver Projetos</span>
+                <span>{t.home.viewProjects}</span>
               </motion.button>
             </Link>
           </motion.div>
@@ -278,7 +280,7 @@ const Home = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
         >
-          <span>Scroll para explorar</span>
+          <span>{t.home.scrollHint}</span>
           <motion.div
             className="scroll-arrow"
             animate={{ y: [0, 10, 0] }}
@@ -299,10 +301,10 @@ const Home = () => {
         >
           <span className="section-tag">{'<skills>'}</span>
           <h2 className="section-title">
-            <ScrambleText text="Habilidades Técnicas" />
+            <ScrambleText text={t.home.skillsTitle} />
           </h2>
           <p className="section-subtitle">
-            Tecnologias que utilizo para criar soluções inovadoras
+            {t.home.skillsSubtitle}
           </p>
         </motion.div>
 
@@ -331,16 +333,11 @@ const Home = () => {
           viewport={{ once: true }}
         >
           <span className="section-tag">{'<navigation>'}</span>
-          <h2 className="section-title">Explore</h2>
+          <h2 className="section-title">{t.home.exploreTitle}</h2>
         </motion.div>
 
         <div className="nav-cards">
-          {[
-            { path: '/sobre', title: 'Sobre', icon: '👨‍💻', desc: 'Conheça minha história' },
-            { path: '/experiencias', title: 'Experiência', icon: '💼', desc: 'Trajetória profissional' },
-            { path: '/projetos', title: 'Projetos', icon: '🚀', desc: 'Trabalhos realizados' },
-            { path: '/contato', title: 'Contato', icon: '📧', desc: 'Vamos conversar' },
-          ].map((item, index) => (
+          {t.home.navCards.map((item, index) => (
             <Link to={item.path} key={item.path}>
               <motion.div
                 className="nav-card"
@@ -397,14 +394,14 @@ const Home = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
                 >
-                  Bem-vindo ao meu Portfólio
+                  {t.home.welcomeTitle}
                 </motion.h1>
                 <motion.p
                   initial={{ y: -10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5 }}
                 >
-                  Explore interativamente através do terminal ou navegue diretamente
+                  {t.home.welcomeSubtitle}
                 </motion.p>
               </div>
 
@@ -426,7 +423,7 @@ const Home = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Fechar Terminal ×
+                {t.home.closeTerminal}
               </motion.button>
             </motion.div>
           </motion.div>

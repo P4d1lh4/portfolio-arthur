@@ -4,53 +4,31 @@ import { Link } from 'react-router-dom';
 import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaFolder, FaStar } from 'react-icons/fa';
 import GlitchText, { MatrixRain } from '../components/GlitchText/GlitchText';
 import FooterV2 from '../components/Footer/FooterV2';
+import { useLanguage } from '../context/LanguageContext';
 import './ProjectsPageV2.css';
 
 const ProjectsPageV2 = () => {
-  const projects = [
+  const { t } = useLanguage();
+
+  const metadata = [
     {
-      title: 'Análise de Dados para Entregadores',
-      description: 'Plataforma completa para análise de dados de entregas com dashboard interativo e assistente de IA.',
-      features: [
-        'Dashboard com gráficos em tempo real',
-        'Análise de performance de motoristas',
-        'Assistente de IA para insights',
-        'Visualização de rotas em mapas'
-      ],
       technologies: ['React', 'TypeScript', 'Tailwind', 'Recharts', 'Node.js', 'OpenAI API'],
       codeUrl: 'https://github.com/P4d1lh4/Projeto-para-entregadores',
-      category: 'Full Stack',
-      featured: true
+      featured: true,
     },
     {
-      title: 'Sistema de Gestão Acadêmica',
-      description: 'Aplicação web completa para gerenciamento de alunos e módulos de ensino em instituições educacionais.',
-      features: [
-        'CRUD completo de alunos e módulos',
-        'Sistema de busca avançada',
-        'Deploy com Docker e Kubernetes',
-        'API RESTful para integração'
-      ],
       technologies: ['Python', 'Flask', 'SQLite', 'Docker', 'Kubernetes', 'REST API'],
       codeUrl: 'https://github.com/P4d1lh4/Aplica-o-Professor',
-      category: 'Backend',
-      featured: true
+      featured: true,
     },
     {
-      title: 'Portfólio Pessoal',
-      description: 'Portfólio interativo com design cyberpunk, animações suaves e efeitos visuais impressionantes.',
-      features: [
-        'Design moderno e responsivo',
-        'Animações com Framer Motion',
-        'Efeitos de terminal e glitch',
-        'Deploy automatizado'
-      ],
       technologies: ['React', 'JavaScript', 'CSS3', 'Framer Motion', 'GitHub Pages'],
       codeUrl: 'https://github.com/P4d1lh4/portfolio-arthur',
-      category: 'Frontend',
-      featured: false
-    }
+      featured: false,
+    },
   ];
+
+  const projects = t.projects.items.map((item, i) => ({ ...item, ...metadata[i] }));
 
   return (
     <div className="projects-page-v2">
@@ -61,7 +39,7 @@ const ProjectsPageV2 = () => {
         <div className="proj-hero-content">
           <Link to="/" className="back-link">
             <FaArrowLeft />
-            <span>cd ..</span>
+            <span>{t.backLink}</span>
           </Link>
 
           <motion.div
@@ -70,12 +48,12 @@ const ProjectsPageV2 = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="section-tag">{'<projetos>'}</span>
+            <span className="section-tag">{t.projects.tag}</span>
             <h1 className="page-title">
-              <GlitchText text="Projetos" glitchOnHover intensity="low" />
+              <GlitchText text={t.projects.title} glitchOnHover intensity="low" />
             </h1>
             <p className="page-subtitle">
-              Trabalhos que demonstram minhas habilidades e paixão por código
+              {t.projects.subtitle}
             </p>
           </motion.div>
         </div>
@@ -98,7 +76,7 @@ const ProjectsPageV2 = () => {
                 <div className="terminal-dots">
                   <span></span><span></span><span></span>
                 </div>
-                <span className="terminal-path">~/projetos/{project.title.toLowerCase().replace(/\s/g, '-').substring(0, 20)}</span>
+                <span className="terminal-path">~/projects/{project.title.toLowerCase().replace(/\s/g, '-').substring(0, 20)}</span>
               </div>
 
               <div className="card-content">
@@ -109,7 +87,7 @@ const ProjectsPageV2 = () => {
                   <div className="card-actions">
                     {project.featured && (
                       <span className="featured-badge">
-                        <FaStar /> Destaque
+                        <FaStar /> {t.projects.featured}
                       </span>
                     )}
                     <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="action-link">
@@ -123,7 +101,7 @@ const ProjectsPageV2 = () => {
                 <p className="project-description">{project.description}</p>
 
                 <div className="project-features">
-                  <span className="features-label">Principais funcionalidades</span>
+                  <span className="features-label">{t.projects.featuresLabel}</span>
                   <ul>
                     {project.features.map((feature, i) => (
                       <li key={i}>
@@ -139,14 +117,14 @@ const ProjectsPageV2 = () => {
                   ))}
                 </div>
 
-                <a 
-                  href={project.codeUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href={project.codeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="view-code-btn"
                 >
                   <FaGithub />
-                  <span>Ver Código</span>
+                  <span>{t.projects.viewCode}</span>
                   <FaExternalLinkAlt className="external-icon" />
                 </a>
               </div>
@@ -160,7 +138,7 @@ const ProjectsPageV2 = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <span className="section-tag">{'</projetos>'}</span>
+          <span className="section-tag">{t.projects.closeTag}</span>
         </motion.div>
 
         {/* GitHub CTA */}
@@ -171,16 +149,16 @@ const ProjectsPageV2 = () => {
           viewport={{ once: true }}
         >
           <div className="cta-content">
-            <h3>Quer ver mais projetos?</h3>
-            <p>Confira meu perfil no GitHub para mais repositórios e contribuições</p>
-            <a 
-              href="https://github.com/P4d1lh4" 
-              target="_blank" 
+            <h3>{t.projects.ctaTitle}</h3>
+            <p>{t.projects.ctaText}</p>
+            <a
+              href="https://github.com/P4d1lh4"
+              target="_blank"
               rel="noopener noreferrer"
               className="github-btn"
             >
               <FaGithub />
-              <span>Ver GitHub</span>
+              <span>{t.projects.ctaBtn}</span>
             </a>
           </div>
         </motion.div>

@@ -2,10 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaEnvelope, FaHeart, FaCode } from 'react-icons/fa';
+import { useLanguage } from '../../context/LanguageContext';
 import './FooterV2.css';
 
 const FooterV2 = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   const socialLinks = [
     { icon: FaGithub, href: 'https://github.com/P4d1lh4', label: 'GitHub' },
@@ -13,18 +15,12 @@ const FooterV2 = () => {
     { icon: FaEnvelope, href: 'mailto:arthur.ppadilha09@gmail.com', label: 'Email' },
   ];
 
-  const quickLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Sobre', path: '/sobre' },
-    { name: 'Experiência', path: '/experiencias' },
-    { name: 'Projetos', path: '/projetos' },
-    { name: 'Contato', path: '/contato' },
-  ];
+  const quickLinks = t.navbar.items;
 
   return (
     <footer className="footer-v2">
       <div className="footer-grid-bg"></div>
-      
+
       <div className="footer-container">
         <div className="footer-content">
           {/* Logo Section */}
@@ -35,17 +31,17 @@ const FooterV2 = () => {
               <span className="logo-bracket">{'/>'}</span>
             </Link>
             <p className="footer-tagline">
-              Desenvolvedor Full Stack & Data Science
+              {t.footer.tagline}
             </p>
             <p className="footer-description">
-              Transformando dados em insights e código em soluções.
+              {t.footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="footer-section">
             <h3 className="footer-title">
-              <span className="title-tag">{'>'}</span> Navegação
+              <span className="title-tag">{'>'}</span> {t.footer.navigation}
             </h3>
             <nav className="footer-nav">
               {quickLinks.map((link) => (
@@ -60,21 +56,21 @@ const FooterV2 = () => {
           {/* Contact */}
           <div className="footer-section">
             <h3 className="footer-title">
-              <span className="title-tag">{'>'}</span> Contato
+              <span className="title-tag">{'>'}</span> {t.footer.contact}
             </h3>
             <div className="footer-contact">
               <a href="mailto:arthur.ppadilha09@gmail.com" className="contact-item">
                 <FaEnvelope />
                 <span>arthur.ppadilha09@gmail.com</span>
               </a>
-              <p className="contact-location">📍 Recife, PE - Brasil</p>
+              <p className="contact-location">{t.footer.location}</p>
             </div>
           </div>
 
           {/* Social Links */}
           <div className="footer-section">
             <h3 className="footer-title">
-              <span className="title-tag">{'>'}</span> Conecte-se
+              <span className="title-tag">{'>'}</span> {t.footer.connect}
             </h3>
             <div className="footer-social">
               {socialLinks.map((social) => (
@@ -100,9 +96,9 @@ const FooterV2 = () => {
           <div className="footer-copyright">
             <span>© {currentYear} Arthur Padilha.</span>
             <span className="separator">|</span>
-            <span>Feito com <FaHeart className="heart-icon" /> e <FaCode className="code-icon" /></span>
+            <span>{t.footer.madeWith} <FaHeart className="heart-icon" /> {t.footer.and} <FaCode className="code-icon" /></span>
           </div>
-          
+
           <div className="footer-tech">
             <span className="tech-badge">React</span>
             <span className="tech-badge">Framer Motion</span>
@@ -113,9 +109,9 @@ const FooterV2 = () => {
         {/* Terminal-style decoration */}
         <div className="footer-terminal">
           <span className="terminal-line">
-            <span className="prompt">$</span> echo "Obrigado por visitar!"
+            <span className="prompt">$</span> {t.footer.echoCmd}
           </span>
-          <span className="terminal-output">Obrigado por visitar!</span>
+          <span className="terminal-output">{t.footer.thanks}</span>
           <span className="terminal-line">
             <span className="prompt">$</span> <span className="cursor">_</span>
           </span>

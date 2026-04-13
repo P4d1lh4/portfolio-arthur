@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaPalette } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
+import LanguageToggle from '../LanguageToggle/LanguageToggle';
 import './NavbarV2.css';
 
 const NavbarV2 = () => {
@@ -11,14 +13,9 @@ const NavbarV2 = () => {
   const [showThemeMenu, setShowThemeMenu] = useState(false);
   const location = useLocation();
   const { themeName, toggleTheme, availableThemes } = useTheme();
+  const { t } = useLanguage();
 
-  const menuItems = [
-    { name: 'Home', path: '/', icon: '~' },
-    { name: 'Sobre', path: '/sobre', icon: '/about' },
-    { name: 'Experiência', path: '/experiencias', icon: '/exp' },
-    { name: 'Projetos', path: '/projetos', icon: '/projects' },
-    { name: 'Contato', path: '/contato', icon: '/contact' },
-  ];
+  const menuItems = t.navbar.items;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,6 +90,9 @@ const NavbarV2 = () => {
 
           {/* Actions */}
           <div className="navbar-actions">
+            {/* Language Toggle */}
+            <LanguageToggle />
+
             {/* Theme Selector */}
             <div className="theme-selector">
               <motion.button
@@ -146,7 +146,7 @@ const NavbarV2 = () => {
         <div className="navbar-status">
           <span className="status-item">
             <span className="status-dot"></span>
-            <span className="status-text">online</span>
+            <span className="status-text">{t.navbar.online}</span>
           </span>
           <span className="status-separator">|</span>
           <span className="status-item">
@@ -174,7 +174,7 @@ const NavbarV2 = () => {
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             >
               <div className="mobile-header">
-                <span className="mobile-title">Navigation</span>
+                <span className="mobile-title">{t.navbar.navigation}</span>
                 <button className="mobile-close" onClick={handleClick}>
                   <FaTimes />
                 </button>
@@ -202,7 +202,9 @@ const NavbarV2 = () => {
               </div>
 
               <div className="mobile-footer">
-                <span className="mobile-theme-label">Theme:</span>
+                <span className="mobile-theme-label">{t.navbar.language}</span>
+                <LanguageToggle variant="inline" />
+                <span className="mobile-theme-label">{t.navbar.theme}</span>
                 <div className="mobile-themes">
                   {availableThemes.map((name) => (
                     <button

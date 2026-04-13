@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  FaArrowLeft, 
-  FaCode, 
-  FaChartLine, 
-  FaRobot, 
+import {
+  FaArrowLeft,
+  FaCode,
+  FaChartLine,
+  FaRobot,
   FaLightbulb,
   FaUsers,
   FaComments,
@@ -18,44 +18,22 @@ import {
 } from 'react-icons/fa';
 import GlitchText, { ScrambleText, MatrixRain } from '../components/GlitchText/GlitchText';
 import FooterV2 from '../components/Footer/FooterV2';
+import { useLanguage } from '../context/LanguageContext';
 import './AboutPageV2.css';
 
 const AboutPageV2 = () => {
-  const interests = [
-    {
-      icon: FaChartLine,
-      title: 'Análise de Dados',
-      description: 'Transformo dados brutos em insights valiosos com PowerBI, Python e visualização de dados.',
-      tags: ['Data Science', 'BI', 'Machine Learning']
-    },
-    {
-      icon: FaCode,
-      title: 'Desenvolvimento Full Stack',
-      description: 'Aplicações web completas, do front-end com React até APIs robustas com Node.js.',
-      tags: ['React', 'Node.js', 'APIs RESTful']
-    },
-    {
-      icon: FaRobot,
-      title: 'Inteligência Artificial',
-      description: 'Estudando ML e Deep Learning para resolver problemas complexos com soluções inovadoras.',
-      tags: ['Machine Learning', 'NLP', 'Deep Learning']
-    },
-    {
-      icon: FaSearch,
-      title: 'Otimização & Performance',
-      description: 'Focado em otimizar aplicações para melhor performance e experiência do usuário.',
-      tags: ['Performance', 'Caching', 'SEO']
-    }
-  ];
+  const { t } = useLanguage();
 
-  const softSkills = [
-    { icon: FaUsers, title: 'Comunicativo', color: '#00ff9f' },
-    { icon: FaTasks, title: 'Organização', color: '#00d4ff' },
-    { icon: FaLightbulb, title: 'Adaptabilidade', color: '#ff00ff' },
-    { icon: FaHandshake, title: 'Trabalho em Equipe', color: '#ffff00' },
-    { icon: FaBrain, title: 'Proativo', color: '#ff6b6b' },
-    { icon: FaComments, title: 'Resolução de Problemas', color: '#9f7aea' }
-  ];
+  const interestIcons = [FaChartLine, FaCode, FaRobot, FaSearch];
+  const interests = t.about.interests.map((item, i) => ({ ...item, icon: interestIcons[i] }));
+
+  const softIcons = [FaUsers, FaTasks, FaLightbulb, FaHandshake, FaBrain, FaComments];
+  const softColors = ['#00ff9f', '#00d4ff', '#ff00ff', '#ffff00', '#ff6b6b', '#9f7aea'];
+  const softSkills = t.about.softSkills.map((title, i) => ({
+    title,
+    icon: softIcons[i],
+    color: softColors[i],
+  }));
 
   return (
     <div className="about-page-v2">
@@ -66,7 +44,7 @@ const AboutPageV2 = () => {
         <div className="about-hero-content">
           <Link to="/" className="back-link">
             <FaArrowLeft />
-            <span>cd ..</span>
+            <span>{t.backLink}</span>
           </Link>
 
           <motion.div
@@ -75,12 +53,12 @@ const AboutPageV2 = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="section-tag">{'<sobre>'}</span>
+            <span className="section-tag">{t.about.tag}</span>
             <h1 className="page-title">
-              <GlitchText text="Sobre Mim" glitchOnHover intensity="low" />
+              <GlitchText text={t.about.title} glitchOnHover intensity="low" />
             </h1>
             <p className="page-subtitle">
-              Conheça minha trajetória e paixões na tecnologia
+              {t.about.subtitle}
             </p>
           </motion.div>
         </div>
@@ -109,7 +87,7 @@ const AboutPageV2 = () => {
                 </div>
                 <div className="bio-details">
                   <h2 className="bio-name">Arthur Padilha</h2>
-                  <p className="bio-role">Full Stack Developer & Data Science</p>
+                  <p className="bio-role">{t.about.role}</p>
                   <div className="bio-meta">
                     <span><FaMapMarkerAlt /> Recife, PE</span>
                     <span><FaGraduationCap /> CESAR School</span>
@@ -117,18 +95,11 @@ const AboutPageV2 = () => {
                 </div>
               </div>
               <div className="bio-text">
-                <p>
-                  <span className="highlight">{'>'}</span> Estudante de Ciência da Computação na CESAR School, 
-                  apaixonado por tecnologia e resolução de problemas complexos.
-                </p>
-                <p>
-                  <span className="highlight">{'>'}</span> Experiência em desenvolvimento web full stack, 
-                  análise de dados e Business Intelligence.
-                </p>
-                <p>
-                  <span className="highlight">{'>'}</span> Sempre buscando aprender novas tecnologias 
-                  e contribuir com projetos inovadores.
-                </p>
+                {t.about.bioLines.map((line, idx) => (
+                  <p key={idx}>
+                    <span className="highlight">{'>'}</span> {line}
+                  </p>
+                ))}
               </div>
             </div>
           </div>
@@ -143,9 +114,9 @@ const AboutPageV2 = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="section-tag">{'<interesses>'}</span>
+          <span className="section-tag">{t.about.interestsTag}</span>
           <h2 className="section-title">
-            <ScrambleText text="Áreas de Interesse" />
+            <ScrambleText text={t.about.interestsTitle} />
           </h2>
         </motion.div>
 
@@ -180,7 +151,7 @@ const AboutPageV2 = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <span className="section-tag">{'</interesses>'}</span>
+          <span className="section-tag">{t.about.interestsCloseTag}</span>
         </motion.div>
       </section>
 
@@ -192,9 +163,9 @@ const AboutPageV2 = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="section-tag">{'<soft-skills>'}</span>
+          <span className="section-tag">{t.about.softTag}</span>
           <h2 className="section-title">
-            <ScrambleText text="Soft Skills" />
+            <ScrambleText text={t.about.softTitle} />
           </h2>
         </motion.div>
 
@@ -224,7 +195,7 @@ const AboutPageV2 = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <span className="section-tag">{'</soft-skills>'}</span>
+          <span className="section-tag">{t.about.softCloseTag}</span>
         </motion.div>
       </section>
 

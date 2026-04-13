@@ -1,38 +1,41 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  FaArrowLeft, 
-  FaEnvelope, 
-  FaGithub, 
-  FaLinkedin, 
+import {
+  FaArrowLeft,
+  FaEnvelope,
+  FaGithub,
+  FaLinkedin,
   FaMapMarkerAlt,
   FaWhatsapp
 } from 'react-icons/fa';
 import GlitchText, { ScrambleText, MatrixRain } from '../components/GlitchText/GlitchText';
 import FooterV2 from '../components/Footer/FooterV2';
+import { useLanguage } from '../context/LanguageContext';
 import './ContactPageV2.css';
 
 const ContactPageV2 = () => {
+  const { t } = useLanguage();
+
   const contactInfo = [
     {
       icon: FaEnvelope,
-      title: 'Email',
+      title: t.contact.emailTitle,
       value: 'arthur.ppadilha09@gmail.com',
       link: 'mailto:arthur.ppadilha09@gmail.com',
       color: '#00ff9f'
     },
     {
       icon: FaWhatsapp,
-      title: 'WhatsApp',
+      title: t.contact.whatsappTitle,
       value: '(81) 99708-7882',
       link: 'https://wa.me/5581997087882',
       color: '#25D366'
     },
     {
       icon: FaMapMarkerAlt,
-      title: 'Localização',
-      value: 'Recife, PE - Brasil',
+      title: t.contact.locationTitle,
+      value: t.contact.locationValue,
       link: null,
       color: '#ff6b6b'
     }
@@ -64,7 +67,7 @@ const ContactPageV2 = () => {
         <div className="contact-hero-content">
           <Link to="/" className="back-link">
             <FaArrowLeft />
-            <span>cd ..</span>
+            <span>{t.backLink}</span>
           </Link>
 
           <motion.div
@@ -73,12 +76,12 @@ const ContactPageV2 = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="section-tag">{'<contato>'}</span>
+            <span className="section-tag">{t.contact.tag}</span>
             <h1 className="page-title">
-              <GlitchText text="Contato" glitchOnHover intensity="low" />
+              <GlitchText text={t.contact.title} glitchOnHover intensity="low" />
             </h1>
             <p className="page-subtitle">
-              Vamos conversar sobre como posso contribuir com seus projetos
+              {t.contact.subtitle}
             </p>
           </motion.div>
         </div>
@@ -96,9 +99,9 @@ const ContactPageV2 = () => {
           >
             <div className="info-header">
               <h2>
-                <ScrambleText text="Vamos Conversar" />
+                <ScrambleText text={t.contact.heading} />
               </h2>
-              <p>Estou sempre aberto a novas oportunidades e projetos interessantes.</p>
+              <p>{t.contact.intro}</p>
             </div>
 
             <div className="info-cards">
@@ -139,7 +142,7 @@ const ContactPageV2 = () => {
             </div>
 
             <div className="social-section">
-              <h3>Redes Sociais</h3>
+              <h3>{t.contact.social}</h3>
               <div className="social-links">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -175,7 +178,7 @@ const ContactPageV2 = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <span className="section-tag">{'</contato>'}</span>
+          <span className="section-tag">{t.contact.closeTag}</span>
         </motion.div>
       </section>
 

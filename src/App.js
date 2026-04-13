@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import { ThemeProvider } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 import NavbarV2 from './components/Navbar/NavbarV2';
 import HomeV2 from './pages/HomeV2';
 import AboutPageV2 from './pages/AboutPageV2';
@@ -38,10 +39,12 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider>
-      <Router basename="/portfolio-arthur">
-        <ScrollToTop />
-        <AppContent />
-      </Router>
+      <LanguageProvider>
+        <Router basename="/portfolio-arthur">
+          <ScrollToTop />
+          <AppContent />
+        </Router>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
