@@ -1,88 +1,33 @@
-import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaLinkedin, FaEnvelope, FaTerminal, FaCode, FaJava, FaHtml5, FaCss3Alt, FaGitAlt, FaNodeJs, FaDatabase, FaDocker } from 'react-icons/fa';
-import { SiPowerbi, SiPython, SiReact, SiJavascript, SiFlask, SiMysql, SiTypescript, SiKubernetes } from 'react-icons/si';
-import Terminal from '../components/Terminal/Terminal';
-import GlitchText, { TypewriterText, ScrambleText, MatrixRain } from '../components/GlitchText/GlitchText';
-import FooterV2 from '../components/Footer/FooterV2';
+import {
+  FaGithub, FaLinkedin, FaEnvelope,
+  FaJava, FaHtml5, FaCss3Alt, FaGitAlt, FaNodeJs, FaDatabase, FaDocker,
+} from 'react-icons/fa';
+import {
+  SiPowerbi, SiPython, SiReact, SiJavascript, SiFlask, SiMysql,
+  SiTypescript, SiKubernetes,
+} from 'react-icons/si';
 import { useLanguage } from '../context/LanguageContext';
+import { useTypingEffect } from '../hooks/useTypingEffect';
 import './HomeV2.css';
 
-const FloatingIcon = ({ icon: Icon, delay, x, y }) => (
-  <motion.div
-    className="floating-icon"
-    style={{ left: `${x}%`, top: `${y}%` }}
-    initial={{ opacity: 0, scale: 0 }}
-    animate={{ 
-      opacity: [0.3, 0.6, 0.3],
-      scale: [1, 1.2, 1],
-      y: [0, -20, 0],
-    }}
-    transition={{
-      duration: 4,
-      delay,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    }}
-  >
-    <Icon />
-  </motion.div>
-);
-
-const CodeLine = ({ children, delay = 0 }) => (
-  <motion.div
-    className="code-line"
-    initial={{ opacity: 0, x: -20 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ delay, duration: 0.5 }}
-  >
-    {children}
-  </motion.div>
-);
-
-const SkillIcon = ({ icon: Icon, name, color, delay }) => (
-  <motion.div
-    className="skill-icon-card"
-    initial={{ opacity: 0, scale: 0 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ delay, duration: 0.3, type: 'spring' }}
-    whileHover={{ scale: 1.06, y: -6 }}
-  >
-    <div className="skill-icon-wrapper" style={{ color }}>
-      <Icon />
-    </div>
-    <span className="skill-icon-name">{name}</span>
-  </motion.div>
-);
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.7, ease: [0.28, 0.11, 0.32, 1] },
+};
 
 const Home = () => {
   const { t } = useLanguage();
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  
-  // Verifica se o usuário já fechou o terminal antes
-  const [showTerminal, setShowTerminal] = useState(false);
-  const [showWelcome, setShowWelcome] = useState(() => {
-    const terminalClosed = localStorage.getItem('terminalClosed');
-    return terminalClosed !== 'true';
+  const { displayText } = useTypingEffect(t.home.roles, {
+    typingSpeed: 70,
+    deletingSpeed: 40,
+    delayBetweenTexts: 2200,
   });
 
-  const handleCloseTerminal = () => {
-    localStorage.setItem('terminalClosed', 'true');
-    setShowWelcome(false);
-  };
-
-  const handleOpenTerminal = () => {
-    setShowWelcome(true);
-  };
-
-  const roles = t.home.roles;
-
-  // Skills baseadas no currículo
   const skills = [
     { name: 'Python', icon: SiPython, color: '#3776AB' },
     { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
@@ -93,371 +38,154 @@ const Home = () => {
     { name: 'CSS', icon: FaCss3Alt, color: '#1572B6' },
     { name: 'Java', icon: FaJava, color: '#007396' },
     { name: 'SQL', icon: SiMysql, color: '#4479A1' },
-    { name: 'Flask', icon: SiFlask, color: '#000000' },
+    { name: 'Flask', icon: SiFlask, color: '#cccccc' },
     { name: 'Git', icon: FaGitAlt, color: '#F05032' },
     { name: 'GitHub', icon: FaGithub, color: '#E5E7EB' },
     { name: 'Docker', icon: FaDocker, color: '#2496ED' },
     { name: 'Kubernetes', icon: SiKubernetes, color: '#326CE5' },
     { name: 'PowerBI', icon: SiPowerbi, color: '#F2C811' },
-    { name: t.home.skillDbName, icon: FaDatabase, color: '#6366F1' },
-  ];
-
-  const floatingIcons = [
-    { icon: SiReact, x: 10, y: 20, delay: 0 },
-    { icon: SiPython, x: 85, y: 15, delay: 0.5 },
-    { icon: SiJavascript, x: 15, y: 70, delay: 1 },
-    { icon: SiPowerbi, x: 80, y: 65, delay: 1.5 },
-    { icon: FaGitAlt, x: 5, y: 45, delay: 2 },
-    { icon: FaNodeJs, x: 90, y: 40, delay: 2.5 },
+    { name: t.home.skillDbName, icon: FaDatabase, color: '#a1a1a6' },
   ];
 
   return (
-    <div className="home-v2" ref={containerRef}>
-      <MatrixRain />
-      
-      {/* Floating Tech Icons */}
-      <div className="floating-icons">
-        {floatingIcons.map((item, index) => (
-          <FloatingIcon key={index} {...item} />
-        ))}
-      </div>
-
-      {/* Hero Section */}
-      <motion.section 
-        className="hero-section"
-        style={{ y, opacity }}
-      >
-        <div className="hero-content">
-          <motion.div
-            className="hero-badge"
-            initial={{ opacity: 0, y: -20 }}
+    <div className="home-v2">
+      {/* HERO */}
+      <section className="section section--hero section--dark home-hero">
+        <div className="section-inner center">
+          <motion.span
+            className="eyebrow"
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ duration: 0.6 }}
           >
-            <span className="badge-dot"></span>
-            <span>{t.home.badge}</span>
-          </motion.div>
+            {t.home.badge}
+          </motion.span>
 
-          <motion.div
-            className="hero-title-container"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <span className="hero-greeting">{t.home.greeting}</span>
-            <h1 className="hero-name">
-              <GlitchText text="Arthur Padilha" glitchOnHover continuous intensity="low" />
-            </h1>
-          </motion.div>
-
-          <motion.div
-            className="hero-role"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            <span className="role-prefix">{'>'}</span>
-            <TypewriterText 
-              texts={roles}
-              speed={80}
-              deleteSpeed={40}
-              pauseTime={2500}
-              className="role-text"
-            />
-          </motion.div>
-
-          <motion.p
-            className="hero-description"
+          <motion.h1
+            className="headline headline--hero"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.05 }}
+          >
+            Arthur Padilha.
+          </motion.h1>
+
+          <motion.h2
+            className="hero-tagline"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+          >
+            {t.home.greeting} <span className="hero-role">{displayText}<span className="role-cursor" /></span>
+          </motion.h2>
+
+          <motion.p
+            className="subhead hero-desc"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.25 }}
           >
             {t.home.descriptionParts[0]}
-            <span className="highlight">{t.home.descriptionParts[1]}</span>
+            <strong>{t.home.descriptionParts[1]}</strong>
             {t.home.descriptionParts[2]}
-            <span className="highlight">{t.home.descriptionParts[3]}</span>
+            <strong>{t.home.descriptionParts[3]}</strong>
             {t.home.descriptionParts[4]}
-            <span className="highlight">{t.home.descriptionParts[5]}</span>
+            <strong>{t.home.descriptionParts[5]}</strong>
             {t.home.descriptionParts[6]}
-            <span className="highlight">{t.home.descriptionParts[7]}</span>
+            <strong>{t.home.descriptionParts[7]}</strong>
             {t.home.descriptionParts[8]}
           </motion.p>
 
-          {/* Code Block Preview */}
           <motion.div
-            className="code-preview"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-          >
-            <div className="code-header">
-              <span className="code-dot"></span>
-              <span className="code-dot"></span>
-              <span className="code-dot"></span>
-              <span className="code-filename">arthur.tsx</span>
-            </div>
-            <div className="code-body">
-              <CodeLine delay={1.1}>
-                <span className="code-keyword">const</span>{' '}
-                <span className="code-variable">developer</span>{' '}
-                <span className="code-operator">=</span>{' '}
-                <span className="code-bracket">{'{'}</span>
-              </CodeLine>
-              <CodeLine delay={1.2}>
-                <span className="code-property">  name:</span>{' '}
-                <span className="code-string">"Arthur Padilha"</span>,
-              </CodeLine>
-              <CodeLine delay={1.3}>
-                <span className="code-property">  role:</span>{' '}
-                <span className="code-string">"{t.home.code.role}"</span>,
-              </CodeLine>
-              <CodeLine delay={1.4}>
-                <span className="code-property">  focus:</span>{' '}
-                <span className="code-string">"{t.home.code.focus}"</span>,
-              </CodeLine>
-              <CodeLine delay={1.5}>
-                <span className="code-property">  passion:</span>{' '}
-                <span className="code-string">"{t.home.code.passion}"</span>,
-              </CodeLine>
-              <CodeLine delay={1.6}>
-                <span className="code-bracket">{'}'}</span>;
-              </CodeLine>
-            </div>
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            className="hero-cta"
+            className="btn-row hero-cta"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
           >
-            <motion.button
-              className="cta-primary"
-              onClick={handleOpenTerminal}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaTerminal />
-              <span>{t.home.openTerminal}</span>
-            </motion.button>
-            
-            <Link to="/projetos">
-              <motion.button
-                className="cta-secondary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaCode />
-                <span>{t.home.viewProjects}</span>
-              </motion.button>
+            <Link to="/projetos" className="btn btn--primary">
+              {t.home.viewProjects}
+            </Link>
+            <Link to="/sobre" className="link-arrow">
+              {t.home.navCards[0].title}
             </Link>
           </motion.div>
+        </div>
 
-          {/* Social Links */}
-          <motion.div
-            className="hero-social"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4 }}
-          >
-            <a href="https://github.com/P4d1lh4" target="_blank" rel="noopener noreferrer" className="social-link">
+        <motion.div
+          className="hero-scroll-hint"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4 }}
+        >
+          <span>{t.home.scrollHint}</span>
+        </motion.div>
+      </section>
+
+      {/* SKILLS */}
+      <section className="section section--grey">
+        <div className="section-inner section-inner--wide center">
+          <motion.span className="eyebrow" {...fadeUp}>/stack</motion.span>
+          <motion.h2 className="headline" {...fadeUp}>{t.home.skillsTitle}</motion.h2>
+          <motion.p className="subhead" {...fadeUp}>{t.home.skillsSubtitle}</motion.p>
+
+          <motion.div className="skills-grid" {...fadeUp}>
+            {skills.map((skill) => (
+              <div key={skill.name} className="skill-item">
+                <span className="skill-icon" style={{ color: skill.color }}>
+                  <skill.icon />
+                </span>
+                <span className="skill-name">{skill.name}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* EXPLORE NAV */}
+      <section className="section section--dark">
+        <div className="section-inner section-inner--wide center">
+          <motion.span className="eyebrow" {...fadeUp}>/explore</motion.span>
+          <motion.h2 className="headline" {...fadeUp}>{t.home.exploreTitle}</motion.h2>
+
+          <div className="explore-grid">
+            {t.home.navCards.map((item, index) => (
+              <motion.div
+                key={item.path}
+                className="explore-tile glass"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: index * 0.08, ease: [0.28, 0.11, 0.32, 1] }}
+              >
+                <Link to={item.path} className="explore-tile-link">
+                  <h3 className="explore-tile-title">{item.title}</h3>
+                  <p className="explore-tile-desc">{item.desc}</p>
+                  <span className="link-arrow explore-tile-cta">
+                    {t.home.exploreTitle}
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SOCIAL CTA */}
+      <section className="section section--tight section--dark">
+        <div className="section-inner center">
+          <motion.div className="hero-social" {...fadeUp}>
+            <a href="https://github.com/P4d1lh4" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
               <FaGithub />
             </a>
-            <a href="https://linkedin.com/in/arthurpadilha" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href="https://www.linkedin.com/in/arthur-ppadilha" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
               <FaLinkedin />
             </a>
-            <a href="mailto:arthur.ppadilha09@gmail.com" className="social-link">
+            <a href="mailto:arthur.ppadilha09@gmail.com" className="social-icon" aria-label="Email">
               <FaEnvelope />
             </a>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="scroll-indicator"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-        >
-          <span>{t.home.scrollHint}</span>
-          <motion.div
-            className="scroll-arrow"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            ↓
-          </motion.div>
-        </motion.div>
-      </motion.section>
-
-      {/* Skills Section */}
-      <section className="skills-section">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <span className="section-tag">{'<skills>'}</span>
-          <h2 className="section-title">
-            <ScrambleText text={t.home.skillsTitle} />
-          </h2>
-          <p className="section-subtitle">
-            {t.home.skillsSubtitle}
-          </p>
-        </motion.div>
-
-        <div className="skills-grid">
-          {skills.map((skill, index) => (
-            <SkillIcon key={skill.name} {...skill} delay={index * 0.05} />
-          ))}
-        </div>
-
-        <motion.div
-          className="section-footer"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <span className="section-tag">{'</skills>'}</span>
-        </motion.div>
       </section>
-
-      {/* Quick Navigation */}
-      <section className="quick-nav-section">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <span className="section-tag">{'<navigation>'}</span>
-          <h2 className="section-title">{t.home.exploreTitle}</h2>
-        </motion.div>
-
-        <div className="nav-cards">
-          {t.home.navCards.map((item, index) => (
-            <Link to={item.path} key={item.path}>
-              <motion.div
-                className="nav-card"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-              >
-                <span className="nav-card-icon">{item.icon}</span>
-                <h3 className="nav-card-title">{item.title}</h3>
-                <p className="nav-card-desc">{item.desc}</p>
-                <span className="nav-card-arrow">→</span>
-              </motion.div>
-            </Link>
-          ))}
-        </div>
-
-        <motion.div
-          className="section-footer"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <span className="section-tag">{'</navigation>'}</span>
-        </motion.div>
-      </section>
-
-      {/* Footer */}
-      <FooterV2 />
-
-      {/* Welcome Terminal Screen */}
-      <AnimatePresence>
-        {showWelcome && (
-          <motion.div
-            className="welcome-screen"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="welcome-background">
-              <MatrixRain />
-            </div>
-            
-            <motion.div
-              className="welcome-content"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="welcome-header">
-                <motion.h1
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  {t.home.welcomeTitle}
-                </motion.h1>
-                <motion.p
-                  initial={{ y: -10, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  {t.home.welcomeSubtitle}
-                </motion.p>
-              </div>
-
-              <motion.div
-                className="welcome-terminal-wrapper"
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              >
-                <Terminal onNavigate={() => setShowWelcome(false)} />
-              </motion.div>
-
-              <motion.button
-                className="skip-terminal-btn"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-                onClick={handleCloseTerminal}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {t.home.closeTerminal}
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Terminal Modal (for reopening) */}
-      <AnimatePresence>
-        {showTerminal && !showWelcome && (
-          <motion.div
-            className="terminal-modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowTerminal(false)}
-          >
-            <motion.div
-              className="terminal-wrapper"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button 
-                className="terminal-close"
-                onClick={() => setShowTerminal(false)}
-              >
-                ✕
-              </button>
-              <Terminal onNavigate={() => setShowTerminal(false)} />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };

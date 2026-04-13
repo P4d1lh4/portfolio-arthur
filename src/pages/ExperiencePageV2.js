@@ -1,137 +1,99 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import {
-  FaArrowLeft,
-  FaBriefcase,
-  FaChalkboardTeacher,
-  FaCalendarAlt,
-  FaMapMarkerAlt,
-  FaCheckCircle
+  FaBriefcase, FaChalkboardTeacher, FaCalendarAlt, FaMapMarkerAlt,
 } from 'react-icons/fa';
-import GlitchText, { MatrixRain } from '../components/GlitchText/GlitchText';
-import FooterV2 from '../components/Footer/FooterV2';
 import { useLanguage } from '../context/LanguageContext';
 import './ExperiencePageV2.css';
+
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.7, ease: [0.28, 0.11, 0.32, 1] },
+};
+
+const metadata = [
+  { icon: FaBriefcase, skills: ['React', 'JavaScript', 'CSS3', 'HTML5', 'Git'] },
+  { icon: FaBriefcase, skills: ['Node.js', 'React', 'Express', 'MongoDB', 'PostgreSQL', 'Docker'] },
+  { icon: FaChalkboardTeacher, skills: ['Python', 'Portugol', 'Teaching', 'Mentoring'] },
+  { icon: FaChalkboardTeacher, skills: ['Python', 'Algorithms', 'Logic', 'Communication'] },
+  { icon: FaChalkboardTeacher, skills: ['Python', 'Robotics', 'Speaking', 'Teaching', 'Lego'] },
+  { icon: FaChalkboardTeacher, skills: ['Organization', 'Leadership', 'Teamwork', 'Events'] },
+  { icon: FaChalkboardTeacher, skills: ['Frameworks', 'Speaking', 'Presentation'] },
+];
 
 const ExperiencePageV2 = () => {
   const { t } = useLanguage();
 
-  const metadata = [
-    { icon: FaBriefcase, type: 'current', skills: ['React', 'JavaScript', 'CSS3', 'HTML5', 'Git'] },
-    { icon: FaBriefcase, type: 'past', skills: ['Node.js', 'React', 'Express', 'MongoDB', 'PostgreSQL', 'Docker'] },
-    { icon: FaChalkboardTeacher, type: 'education', skills: ['Python', 'Portugol', 'Teaching', 'Mentoring'] },
-    { icon: FaChalkboardTeacher, type: 'education', skills: ['Python', 'Algorithms', 'Logic', 'Communication'] },
-    { icon: FaChalkboardTeacher, type: 'education', skills: ['Python', 'Robotics', 'Speaking', 'Teaching', 'Communication', 'Lego'] },
-    { icon: FaChalkboardTeacher, type: 'education', skills: ['Organization', 'Leadership', 'Communication', 'Teamwork', 'Event Management'] },
-    { icon: FaChalkboardTeacher, type: 'education', skills: ['Frameworks', 'Speaking', 'Communication', 'Presentation'] },
-  ];
-
-  const experiences = t.experience.items.map((item, i) => ({
-    ...item,
-    ...metadata[i],
-  }));
+  const experiences = t.experience.items.map((item, i) => ({ ...item, ...metadata[i] }));
 
   return (
     <div className="experience-page-v2">
-      <MatrixRain />
-
-      {/* Hero Section */}
-      <section className="exp-hero">
-        <div className="exp-hero-content">
-          <Link to="/" className="back-link">
-            <FaArrowLeft />
-            <span>{t.backLink}</span>
-          </Link>
-
-          <motion.div
-            className="hero-header"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="section-tag">{t.experience.tag}</span>
-            <h1 className="page-title">
-              <GlitchText text={t.experience.title} glitchOnHover intensity="low" />
-            </h1>
-            <p className="page-subtitle">
-              {t.experience.subtitle}
-            </p>
-          </motion.div>
+      {/* HERO */}
+      <section className="section section--hero section--dark">
+        <div className="section-inner center">
+          <motion.span className="eyebrow" {...fadeUp}>/experience</motion.span>
+          <motion.h1 className="headline headline--hero" {...fadeUp}>
+            {t.experience.title}
+          </motion.h1>
+          <motion.p className="subhead" {...fadeUp}>
+            {t.experience.subtitle}
+          </motion.p>
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="timeline-section">
-        <div className="timeline-container">
-          <div className="timeline-line"></div>
+      {/* TIMELINE LIST */}
+      <section className="section section--grey">
+        <div className="section-inner exp-list">
+          {experiences.map((exp, index) => {
+            const Icon = exp.icon;
+            const isCurrent = exp.period === t.experience.current;
 
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              className={`timeline-item ${exp.type}`}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15, duration: 0.5 }}
-            >
-              <div className="timeline-dot">
-                <exp.icon />
-              </div>
-
-              <div className="timeline-card">
-                <div className="card-header">
-                  <div className="terminal-dots">
-                    <span></span><span></span><span></span>
-                  </div>
-                  <span className="terminal-path">~/experience/{exp.company.toLowerCase().replace(/\s/g, '-')}</span>
-                </div>
-
-                <div className="card-content">
-                  <div className="card-meta">
-                    <span className="period">
+            return (
+              <motion.article
+                key={index}
+                className="exp-row glass"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.6, delay: index * 0.05, ease: [0.28, 0.11, 0.32, 1] }}
+              >
+                <div className="exp-col-left">
+                  <div className="exp-icon"><Icon /></div>
+                  <div className="exp-period-meta">
+                    <span className="exp-period">
                       <FaCalendarAlt /> {exp.period}
                     </span>
-                    <span className="location">
+                    <span className="exp-location">
                       <FaMapMarkerAlt /> {exp.location}
                     </span>
+                    {isCurrent && <span className="exp-current">● {t.experience.current}</span>}
                   </div>
+                </div>
 
-                  <h3 className="card-title">{exp.title}</h3>
-                  <p className="card-company">{exp.company}</p>
-                  <p className="card-description">{exp.description}</p>
+                <div className="exp-col-right">
+                  <h3 className="exp-title">{exp.title}</h3>
+                  <p className="exp-company">{exp.company}</p>
+                  <p className="exp-description">{exp.description}</p>
 
-                  <div className="responsibilities">
+                  <ul className="exp-responsibilities">
                     {exp.responsibilities.map((resp, i) => (
-                      <div key={i} className="responsibility-item">
-                        <FaCheckCircle className="check-icon" />
-                        <span>{resp}</span>
-                      </div>
+                      <li key={i}>{resp}</li>
                     ))}
-                  </div>
+                  </ul>
 
-                  <div className="card-skills">
-                    {exp.skills.map(skill => (
-                      <span key={skill} className="skill-tag">{skill}</span>
+                  <div className="exp-skills">
+                    {exp.skills.map((skill) => (
+                      <span key={skill} className="chip">{skill}</span>
                     ))}
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
-
-        <motion.div
-          className="section-footer"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <span className="section-tag">{t.experience.closeTag}</span>
-        </motion.div>
       </section>
-
-      <FooterV2 />
     </div>
   );
 };

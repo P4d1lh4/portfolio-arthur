@@ -1,18 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import {
-  FaArrowLeft,
-  FaEnvelope,
-  FaGithub,
-  FaLinkedin,
-  FaMapMarkerAlt,
-  FaWhatsapp
+  FaEnvelope, FaGithub, FaLinkedin, FaMapMarkerAlt, FaWhatsapp,
 } from 'react-icons/fa';
-import GlitchText, { ScrambleText, MatrixRain } from '../components/GlitchText/GlitchText';
-import FooterV2 from '../components/Footer/FooterV2';
 import { useLanguage } from '../context/LanguageContext';
 import './ContactPageV2.css';
+
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.7, ease: [0.28, 0.11, 0.32, 1] },
+};
 
 const ContactPageV2 = () => {
   const { t } = useLanguage();
@@ -23,22 +22,19 @@ const ContactPageV2 = () => {
       title: t.contact.emailTitle,
       value: 'arthur.ppadilha09@gmail.com',
       link: 'mailto:arthur.ppadilha09@gmail.com',
-      color: '#00ff9f'
     },
     {
       icon: FaWhatsapp,
       title: t.contact.whatsappTitle,
       value: '(81) 99708-7882',
       link: 'https://wa.me/5581997087882',
-      color: '#25D366'
     },
     {
       icon: FaMapMarkerAlt,
       title: t.contact.locationTitle,
       value: t.contact.locationValue,
       link: null,
-      color: '#ff6b6b'
-    }
+    },
   ];
 
   const socialLinks = [
@@ -47,142 +43,104 @@ const ContactPageV2 = () => {
       name: 'GitHub',
       url: 'https://github.com/P4d1lh4',
       username: '@P4d1lh4',
-      color: '#E5E7EB'
     },
     {
       icon: FaLinkedin,
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/in/arthur-ppadilha',
       username: '/arthur-ppadilha',
-      color: '#0077b5'
-    }
+    },
   ];
 
   return (
     <div className="contact-page-v2">
-      <MatrixRain />
-
-      {/* Hero Section */}
-      <section className="contact-hero">
-        <div className="contact-hero-content">
-          <Link to="/" className="back-link">
-            <FaArrowLeft />
-            <span>{t.backLink}</span>
-          </Link>
-
-          <motion.div
-            className="hero-header"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="section-tag">{t.contact.tag}</span>
-            <h1 className="page-title">
-              <GlitchText text={t.contact.title} glitchOnHover intensity="low" />
-            </h1>
-            <p className="page-subtitle">
-              {t.contact.subtitle}
-            </p>
+      {/* HERO */}
+      <section className="section section--hero section--dark">
+        <div className="section-inner center">
+          <motion.span className="eyebrow" {...fadeUp}>/contact</motion.span>
+          <motion.h1 className="headline headline--hero" {...fadeUp}>
+            {t.contact.heading}
+          </motion.h1>
+          <motion.p className="subhead" {...fadeUp}>
+            {t.contact.intro}
+          </motion.p>
+          <motion.div className="btn-row" style={{ marginTop: 36 }} {...fadeUp}>
+            <a href="mailto:arthur.ppadilha09@gmail.com" className="btn btn--primary">
+              {t.contact.emailTitle}
+            </a>
+            <a href="https://wa.me/5581997087882" target="_blank" rel="noopener noreferrer" className="link-arrow">
+              {t.contact.whatsappTitle}
+            </a>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Content */}
-      <section className="contact-section">
-        <div className="contact-grid">
-          {/* Contact Info */}
-          <motion.div
-            className="contact-info"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="info-header">
-              <h2>
-                <ScrambleText text={t.contact.heading} />
-              </h2>
-              <p>{t.contact.intro}</p>
-            </div>
+      {/* CONTACT INFO */}
+      <section className="section section--grey">
+        <div className="section-inner section-inner--wide">
+          <div className="contact-info-grid">
+            {contactInfo.map(({ icon: Icon, title, value, link }, index) => {
+              const inner = (
+                <>
+                  <div className="contact-info-icon"><Icon /></div>
+                  <span className="contact-info-title">{title}</span>
+                  <span className="contact-info-value">{value}</span>
+                </>
+              );
 
-            <div className="info-cards">
-              {contactInfo.map((info, index) => (
+              return (
                 <motion.div
-                  key={info.title}
-                  className="info-card"
-                  initial={{ opacity: 0, y: 20 }}
+                  key={title}
+                  className="contact-info-tile glass"
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ x: 10 }}
-                  style={{ '--card-color': info.color }}
+                  transition={{ duration: 0.6, delay: index * 0.08, ease: [0.28, 0.11, 0.32, 1] }}
                 >
-                  {info.link ? (
-                    <a href={info.link} target={info.link.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
-                      <div className="info-icon" style={{ color: info.color }}>
-                        <info.icon />
-                      </div>
-                      <div className="info-content">
-                        <span className="info-title">{info.title}</span>
-                        <span className="info-value">{info.value}</span>
-                      </div>
+                  {link ? (
+                    <a href={link} target={link.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+                      {inner}
                     </a>
                   ) : (
-                    <div className="info-static">
-                      <div className="info-icon" style={{ color: info.color }}>
-                        <info.icon />
-                      </div>
-                      <div className="info-content">
-                        <span className="info-title">{info.title}</span>
-                        <span className="info-value">{info.value}</span>
-                      </div>
-                    </div>
+                    <div>{inner}</div>
                   )}
                 </motion.div>
-              ))}
-            </div>
-
-            <div className="social-section">
-              <h3>{t.contact.social}</h3>
-              <div className="social-links">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-card"
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, type: 'spring' }}
-                    whileHover={{ scale: 1.05 }}
-                    style={{ '--social-color': social.color }}
-                  >
-                    <div className="social-icon" style={{ color: social.color }}>
-                      <social.icon />
-                    </div>
-                    <div className="social-info">
-                      <span className="social-name">{social.name}</span>
-                      <span className="social-username">{social.username}</span>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+              );
+            })}
+          </div>
         </div>
-
-        <motion.div
-          className="section-footer"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <span className="section-tag">{t.contact.closeTag}</span>
-        </motion.div>
       </section>
 
-      <FooterV2 />
+      {/* SOCIAL */}
+      <section className="section section--dark">
+        <div className="section-inner center">
+          <motion.span className="eyebrow" {...fadeUp}>/social</motion.span>
+          <motion.h2 className="headline" {...fadeUp}>{t.contact.social}</motion.h2>
+
+          <div className="social-tiles">
+            {socialLinks.map(({ icon: Icon, name, url, username }, index) => (
+              <motion.a
+                key={name}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-tile glass"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.08, ease: [0.28, 0.11, 0.32, 1] }}
+              >
+                <div className="social-tile-icon"><Icon /></div>
+                <div className="social-tile-info">
+                  <span className="social-tile-name">{name}</span>
+                  <span className="social-tile-username">{username}</span>
+                </div>
+                <span className="social-tile-arrow">›</span>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

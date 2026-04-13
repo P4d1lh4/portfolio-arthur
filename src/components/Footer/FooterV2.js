@@ -1,7 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaLinkedin, FaEnvelope, FaHeart, FaCode } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
 import './FooterV2.css';
 
@@ -11,110 +10,56 @@ const FooterV2 = () => {
 
   const socialLinks = [
     { icon: FaGithub, href: 'https://github.com/P4d1lh4', label: 'GitHub' },
-    { icon: FaLinkedin, href: 'https://linkedin.com/in/arthurpadilha', label: 'LinkedIn' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/arthur-ppadilha', label: 'LinkedIn' },
     { icon: FaEnvelope, href: 'mailto:arthur.ppadilha09@gmail.com', label: 'Email' },
   ];
 
-  const quickLinks = t.navbar.items;
-
   return (
     <footer className="footer-v2">
-      <div className="footer-grid-bg"></div>
-
       <div className="footer-container">
-        <div className="footer-content">
-          {/* Logo Section */}
-          <div className="footer-section footer-brand">
-            <Link to="/" className="footer-logo">
-              <span className="logo-bracket">{'<'}</span>
-              <span className="logo-text">Arthur Padilha</span>
-              <span className="logo-bracket">{'/>'}</span>
-            </Link>
-            <p className="footer-tagline">
-              {t.footer.tagline}
-            </p>
-            <p className="footer-description">
-              {t.footer.description}
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="footer-section">
-            <h3 className="footer-title">
-              <span className="title-tag">{'>'}</span> {t.footer.navigation}
-            </h3>
+        <div className="footer-cols">
+          <div className="footer-col">
+            <h4 className="footer-col-title">{t.footer.navigation}</h4>
             <nav className="footer-nav">
-              {quickLinks.map((link) => (
+              {t.navbar.items.map((link) => (
                 <Link key={link.path} to={link.path} className="footer-link">
-                  <span className="link-dot"></span>
                   {link.name}
                 </Link>
               ))}
             </nav>
           </div>
 
-          {/* Contact */}
-          <div className="footer-section">
-            <h3 className="footer-title">
-              <span className="title-tag">{'>'}</span> {t.footer.contact}
-            </h3>
-            <div className="footer-contact">
-              <a href="mailto:arthur.ppadilha09@gmail.com" className="contact-item">
-                <FaEnvelope />
-                <span>arthur.ppadilha09@gmail.com</span>
+          <div className="footer-col">
+            <h4 className="footer-col-title">{t.footer.contact}</h4>
+            <div className="footer-nav">
+              <a href="mailto:arthur.ppadilha09@gmail.com" className="footer-link">
+                arthur.ppadilha09@gmail.com
               </a>
-              <p className="contact-location">{t.footer.location}</p>
+              <span className="footer-link footer-link--static">{t.footer.location}</span>
             </div>
           </div>
 
-          {/* Social Links */}
-          <div className="footer-section">
-            <h3 className="footer-title">
-              <span className="title-tag">{'>'}</span> {t.footer.connect}
-            </h3>
+          <div className="footer-col">
+            <h4 className="footer-col-title">{t.footer.connect}</h4>
             <div className="footer-social">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
+              {socialLinks.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="social-btn"
-                  whileHover={{ scale: 1.1, y: -3 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label={social.label}
+                  className="footer-social-btn"
+                  aria-label={label}
                 >
-                  <social.icon />
-                </motion.a>
+                  <Icon />
+                </a>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="footer-bottom">
-          <div className="footer-copyright">
-            <span>© {currentYear} Arthur Padilha.</span>
-            <span className="separator">|</span>
-            <span>{t.footer.madeWith} <FaHeart className="heart-icon" /> {t.footer.and} <FaCode className="code-icon" /></span>
-          </div>
-
-          <div className="footer-tech">
-            <span className="tech-badge">React</span>
-            <span className="tech-badge">Framer Motion</span>
-            <span className="tech-badge">CSS3</span>
-          </div>
-        </div>
-
-        {/* Terminal-style decoration */}
-        <div className="footer-terminal">
-          <span className="terminal-line">
-            <span className="prompt">$</span> {t.footer.echoCmd}
-          </span>
-          <span className="terminal-output">{t.footer.thanks}</span>
-          <span className="terminal-line">
-            <span className="prompt">$</span> <span className="cursor">_</span>
-          </span>
+          <span>Copyright © {currentYear} Arthur Padilha. {t.footer.thanks}</span>
         </div>
       </div>
     </footer>
