@@ -3,44 +3,81 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#131417" />
+
+    <!-- Primary meta -->
+    <title>Arthur Padilha — Desenvolvedor Full-Stack | React, FastAPI & Dados</title>
     <meta
       name="description"
-      content="Portfólio de Arthur Padilha - Desenvolvedor Full Stack"
+      content="Desenvolvedor full-stack em Recife (PE). Construo aplicações web com React, FastAPI e Node.js, com foco em dados e IA. Veja meus projetos, experiência e como entrar em contato."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>Arthur Padilha - Desenvolvedor</title>
-    
-    <!-- Start Single Page Apps for GitHub Pages -->
+    <meta name="author" content="Arthur Pedrosa Padilha" />
+    <meta name="keywords" content="Arthur Padilha, desenvolvedor full-stack, React, FastAPI, Node.js, TypeScript, Python, dados, Recife, front-end" />
+    <link rel="canonical" href="https://p4d1lh4.github.io/portfolio-arthur/" />
+
+    <!-- Icons / manifest -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.svg" type="image/svg+xml" />
+    <link rel="mask-icon" href="%PUBLIC_URL%/favicon.svg" color="#2E2AD6" />
+    <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest" />
+
+    <!-- Single Page Apps for GitHub Pages — decodifica o redirect do 404.html
+         (https://github.com/rafgraph/spa-github-pages) -->
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      // This script checks to see if a redirect is present in the query string,
-      // converts it back into the correct url and adds it to the
-      // browser's history using window.history.replaceState(...),
-      // which won't cause the browser to attempt to load the new url.
-      // When the single page app is loaded further down in this file,
-      // the correct url will be waiting in the browser's history for
-      // the single page app to route accordingly.
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
           }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
         }
-      }(window.location))
+      })(window.location);
     </script>
-    <!-- End Single Page Apps for GitHub Pages -->
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Arthur Padilha" />
+    <meta property="og:title" content="Arthur Padilha — Desenvolvedor Full-Stack" />
+    <meta property="og:description" content="Construo aplicações web com React, FastAPI e Node.js, com foco em dados e IA. Veja meus projetos e experiência." />
+    <meta property="og:url" content="https://p4d1lh4.github.io/portfolio-arthur/" />
+    <meta property="og:image" content="https://p4d1lh4.github.io/portfolio-arthur/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Arthur Padilha — Desenvolvedor Full-Stack" />
+    <meta name="twitter:description" content="Construo aplicações web com React, FastAPI e Node.js, com foco em dados e IA." />
+    <meta name="twitter:image" content="https://p4d1lh4.github.io/portfolio-arthur/og-image.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Arthur Pedrosa Padilha",
+        "jobTitle": "Desenvolvedor Full-Stack",
+        "url": "https://p4d1lh4.github.io/portfolio-arthur/",
+        "email": "mailto:arthur.ppadilha09@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Recife", "addressRegion": "PE", "addressCountry": "BR" },
+        "alumniOf": "CESAR School",
+        "sameAs": [
+          "https://github.com/P4d1lh4",
+          "https://www.linkedin.com/in/arthur-ppadilha"
+        ]
+      }
+    </script>
   </head>
   <body>
-    <noscript>Você precisa habilitar JavaScript para executar esta aplicação.</noscript>
+    <noscript>Você precisa habilitar o JavaScript para ver este portfólio. Contato: arthur.ppadilha09@gmail.com</noscript>
     <div id="root"></div>
   </body>
 </html>
-

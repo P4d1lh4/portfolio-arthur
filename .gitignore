@@ -27,3 +27,6 @@ yarn-error.log*
 *.swo
 *~
 
+
+# Claude Code local config
+.claude/

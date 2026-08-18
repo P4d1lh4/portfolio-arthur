@@ -1,116 +1,65 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FaEnvelope, FaPhone, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaEnvelope, FaWhatsapp, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useLanguage } from '../../context/LanguageContext';
+import Reveal from '../Reveal';
 import './Contact.css';
 
-const Contact = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+export default function Contact() {
+  const { t } = useLanguage();
+  const c = t.contact;
 
-  const contactInfo = [
-    {
-      icon: <FaEnvelope />,
-      title: 'Email',
-      value: 'arthur.ppadilha09@gmail.com',
-      link: 'mailto:arthur.ppadilha09@gmail.com',
-    },
-    {
-      icon: <FaPhone />,
-      title: 'Telefone',
-      value: '(81) 99708-7882',
-      link: 'tel:+5581997087882',
-    },
+  const methods = [
+    { icon: FaEnvelope, label: c.email, value: 'arthur.ppadilha09@gmail.com', href: 'mailto:arthur.ppadilha09@gmail.com' },
+    { icon: FaWhatsapp, label: c.whatsapp, value: '(81) 99708-7882', href: 'https://wa.me/5581997087882' },
+    { icon: FaMapMarkerAlt, label: c.location, value: c.locationValue, href: null },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-      },
-    },
-  };
+  const social = [
+    { icon: FaGithub, name: 'GitHub', href: 'https://github.com/P4d1lh4', handle: '@P4d1lh4' },
+    { icon: FaLinkedin, name: 'LinkedIn', href: 'https://www.linkedin.com/in/arthur-ppadilha', handle: '/arthur-ppadilha' },
+  ];
 
   return (
-    <section id="contact" className="contact" ref={ref}>
-      <motion.div
-        className="contact-container"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-      >
-        <motion.div className="section-header" variants={itemVariants}>
-          <h2 className="section-title">Entre em Contato</h2>
-          <div className="section-line"></div>
-          <p className="contact-subtitle">
-            Vamos conversar sobre como posso contribuir com seus projetos
-          </p>
-        </motion.div>
+    <section id="contato" className="section contact">
+      <div className="container">
+        <Reveal className="section-head">
+          <span className="eyebrow">{c.eyebrow}</span>
+          <h2 className="h2">{c.title}</h2>
+          <p className="lead">{c.subtitle}</p>
+        </Reveal>
 
-        <div className="contact-content">
-          <motion.div className="contact-info" variants={itemVariants}>
-            {contactInfo.map((info, index) => (
-              <motion.div
-                key={index}
-                className="info-card"
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="info-icon">{info.icon}</div>
-                <h4 className="info-title">{info.title}</h4>
-                {info.link ? (
-                  <a href={info.link} className="info-value">
-                    {info.value}
-                  </a>
-                ) : (
-                  <p className="info-value">{info.value}</p>
-                )}
-              </motion.div>
-            ))}
-
-            <motion.div className="social-links" variants={itemVariants}>
-              <h4 className="social-title">Conecte-se comigo</h4>
-              <div className="social-icons">
-                <motion.a
-                  href="https://github.com/P4d1lh4"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                >
-                  <FaGithub />
-                </motion.a>
-                <motion.a
-                  href="https://www.linkedin.com/in/arthur-ppadilha"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link"
-                  whileHover={{ scale: 1.2, rotate: -5 }}
-                >
-                  <FaLinkedin />
-                </motion.a>
-              </div>
-            </motion.div>
-          </motion.div>
+        <div className="contact-grid">
+          {methods.map(({ icon: Icon, label, value, href }) => {
+            const inner = (
+              <>
+                <span className="contact-icon"><Icon /></span>
+                <span className="contact-label mono">{label}</span>
+                <span className="contact-value">{value}</span>
+              </>
+            );
+            return href ? (
+              <a className="contact-card" key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+                {inner}
+              </a>
+            ) : (
+              <div className="contact-card contact-card--static" key={label}>{inner}</div>
+            );
+          })}
         </div>
-      </motion.div>
+
+        <Reveal className="contact-social">
+          <span className="contact-social-label mono">{c.social}</span>
+          <div className="contact-social-links">
+            {social.map(({ icon: Icon, name, href, handle }) => (
+              <a className="contact-social-link" key={name} href={href} target="_blank" rel="noopener noreferrer">
+                <Icon />
+                <span className="contact-social-name">{name}</span>
+                <span className="contact-social-handle mono">{handle}</span>
+              </a>
+            ))}
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
-};
-
-export default Contact;
-
+}

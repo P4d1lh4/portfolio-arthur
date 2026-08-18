@@ -1,0 +1,248 @@
+/* Project case study. Reuses the site tokens: no new colors, no new radii. */
+
+.pd { padding-top: 56px; }
+
+.pd-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  transition: color 0.25s var(--ease), gap 0.25s var(--ease);
+}
+.pd-back svg { width: 0.85em; height: 0.85em; }
+.pd-back:hover { color: var(--accent); gap: 13px; }
+
+/* ---------- Header: asymmetric, title left / meta rail right ---------- */
+.pd-head {
+  display: grid;
+  grid-template-columns: 1.55fr 0.75fr;
+  gap: 48px;
+  align-items: end;
+  margin-top: 28px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.pd-head-main { display: flex; flex-direction: column; gap: 18px; }
+
+.pd-title {
+  font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+}
+.pd-tagline { max-width: 54ch; }
+
+.pd-meta { display: flex; flex-direction: column; gap: 18px; }
+.pd-meta-row { display: flex; align-items: baseline; gap: 12px; }
+.pd-meta-k {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.pd-meta-v { font-size: 0.9rem; color: var(--ink-2); }
+.pd-meta-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.pd-private { font-size: 0.78rem; color: var(--ink-3); }
+
+/* ---------- Shots ---------- */
+.pd-hero-shot { margin-top: 40px; }
+.pd-figure { display: flex; flex-direction: column; gap: 12px; margin: 0; }
+.pd-shot {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  background: var(--card);
+}
+.pd-caption {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ink-3);
+  max-width: 68ch;
+}
+
+/* ---------- Blocks ---------- */
+.pd-block { margin-top: 76px; }
+.pd-block > .h2 { margin-bottom: 28px; }
+
+.pd-prose { display: flex; flex-direction: column; gap: 18px; }
+.pd-prose .h2 { margin-bottom: 10px; }
+.pd-prose .lead { max-width: 68ch; }
+
+/* ---------- How it works: numbered flow with a hairline spine ---------- */
+.pd-flow {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 4px;
+}
+.pd-step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+.pd-step:first-child { border-top: 0; padding-top: 4px; }
+.pd-step-num {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  padding-top: 2px;
+}
+.pd-step-body { display: flex; flex-direction: column; gap: 8px; }
+.pd-step-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+.pd-step-desc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 66ch;
+}
+
+/* ---------- Stack: grouped, two columns ---------- */
+.pd-stack {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.pd-stack-group {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.pd-stack-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.pd-stack-list { display: flex; flex-direction: column; gap: 14px; }
+.pd-stack-item { display: flex; flex-direction: column; gap: 3px; }
+.pd-stack-name {
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.pd-stack-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* ---------- What I built: card grid ---------- */
+.pd-build {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.pd-build-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.pd-build-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+.pd-build-desc { font-size: 0.92rem; line-height: 1.62; color: var(--ink-2); }
+
+/* ---------- Gallery ---------- */
+.pd-gallery { display: flex; flex-direction: column; gap: 40px; }
+
+/* ---------- Tech strip ---------- */
+.pd-tech {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.pd-tech-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.pd-tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- Next project ---------- */
+.pd-next { margin-top: 64px; }
+.pd-next-link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px 20px;
+  padding: 32px 36px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.pd-next-link:hover { border-color: var(--accent-line); transform: translateY(-2px); }
+.pd-next-label {
+  grid-column: 1;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.pd-next-title {
+  grid-column: 1;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+.pd-next-arrow {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  font-size: 1.5rem;
+  color: var(--accent);
+  transition: transform 0.25s var(--ease);
+}
+.pd-next-link:hover .pd-next-arrow { transform: translateX(6px); }
+
+/* ---------- Not found ---------- */
+.pd-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.pd-empty .btn { margin-top: 8px; }
+
+/* ---------- Mobile: everything collapses to one column ---------- */
+@media (max-width: 880px) {
+  .pd-stack, .pd-build { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .pd { padding-top: 36px; }
+  .pd-head {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: start;
+    padding-bottom: 28px;
+  }
+  .pd-block { margin-top: 56px; }
+  .pd-hero-shot { margin-top: 28px; }
+  .pd-step { grid-template-columns: 36px 1fr; gap: 14px; }
+  .pd-stack-group, .pd-build-item { padding: 20px; }
+  .pd-gallery { gap: 28px; }
+  .pd-next-link { padding: 24px; }
+  .pd-next-arrow { font-size: 1.2rem; }
+}

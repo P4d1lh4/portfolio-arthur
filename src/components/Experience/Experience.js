@@ -1,145 +1,53 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FaBriefcase, FaChalkboardTeacher, FaRobot, FaUsers } from 'react-icons/fa';
+import { useLanguage } from '../../context/LanguageContext';
+import Reveal from '../Reveal';
 import './Experience.css';
 
-const Experience = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const experiences = [
-    {
-      icon: <FaBriefcase />,
-      title: 'Desenvolvedor Front-end',
-      company: 'Seaway',
-      period: 'Atual',
-      description:
-        'Desenvolvimento na aplicação web com React, ajustando layouts, corrigindo erros e otimizando rotas do usuário.',
-      skills: ['React', 'JavaScript', 'CSS', 'UI/UX'],
-    },
-    {
-      icon: <FaBriefcase />,
-      title: 'Desenvolvedor Full Stack',
-      company: 'Estágio',
-      period: 'Anterior',
-      description:
-        'Desenvolvimento de aplicações web com Node.js e React, criando APIs, interfaces responsivas e integrando com bancos de dados. Atuação em time ágil e manutenção de sistemas existentes.',
-      skills: ['Node.js', 'React', 'APIs', 'Banco de Dados', 'Metodologias Ágeis'],
-    },
-    {
-      icon: <FaChalkboardTeacher />,
-      title: 'Monitor em Fundamentos de Programação',
-      company: 'CESAR School',
-      period: '1º Período',
-      description:
-        'Participei como facilitador da matéria de programação do 1º período envolvendo as linguagens Portugol e Python, auxiliando em dúvidas e passando exercícios para melhor aprendizagem.',
-      skills: ['Python', 'Portugol', 'Ensino', 'Mentoria'],
-    },
-    {
-      icon: <FaChalkboardTeacher />,
-      title: 'Auxiliar de Professor',
-      company: 'NExt',
-      period: 'Anterior',
-      description:
-        'Participei do processo de ensino dos fundamentos de programação na linguagem Python, com o objetivo de introduzir conceitos básicos da lógica computacional e de algoritmos.',
-      skills: ['Python', 'Ensino', 'Mentoria', 'Algoritmos'],
-    },
-    {
-      icon: <FaRobot />,
-      title: 'Palestrante e Oficineiro',
-      company: 'Olimpíada Brasileira de Robótica',
-      period: '2022',
-      description:
-        'Ministrei uma palestra com a temática de introdução ao Python. Criei uma oficina para crianças que estavam presentes na OBR e queriam aprender a usar modelo Lego voltado para a robótica.',
-      skills: ['Python', 'Robótica', 'Ensino', 'Lego'],
-    },
-    {
-      icon: <FaUsers />,
-      title: 'Semana de Imersão',
-      company: 'CESAR School',
-      period: '2022',
-      description:
-        'Ajudei na organização e monitoramento das atividades de imersão para novos alunos da faculdade CESAR School.',
-      skills: ['Organização', 'Liderança', 'Gestão de Eventos'],
-    },
-    {
-      icon: <FaChalkboardTeacher />,
-      title: 'Maratona de Inovação',
-      company: 'CESAR School',
-      period: '2022',
-      description:
-        'Ministrei uma palestra dinâmica e informativa sobre Frameworks durante um evento universitário aberto. Compartilhei meu conhecimento e insights com um público diversificado, abordando os conceitos fundamentais e a importância dos frameworks na tecnologia atual.',
-      skills: ['Frameworks', 'Palestras', 'Comunicação'],
-    },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { x: -50, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-      },
-    },
-  };
+export default function Experience() {
+  const { t } = useLanguage();
+  const e = t.experience;
 
   return (
-    <section id="experience" className="experience" ref={ref}>
-      <motion.div
-        className="experience-container"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-      >
-        <motion.div className="section-header" variants={itemVariants}>
-          <h2 className="section-title">Experiência</h2>
-          <div className="section-line"></div>
-        </motion.div>
+    <section id="experiencia" className="section section--alt experience">
+      <div className="container">
+        <Reveal className="section-head">
+          <span className="eyebrow">{e.eyebrow}</span>
+          <h2 className="h2">{e.title}</h2>
+        </Reveal>
 
-        <div className="timeline">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              className="timeline-item"
-              variants={itemVariants}
-            >
-              <div className="timeline-icon">{exp.icon}</div>
-              <div className="timeline-content">
-                <div className="timeline-header">
-                  <h3 className="timeline-title">{exp.title}</h3>
-                  <span className="timeline-period">{exp.period}</span>
-                </div>
-                <h4 className="timeline-company">{exp.company}</h4>
-                <p className="timeline-description">{exp.description}</p>
-                <div className="timeline-skills">
-                  {exp.skills.map((skill, i) => (
-                    <span key={i} className="skill-tag">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+        <div className="exp-timeline">
+          {e.items.map((item, i) => (
+            <Reveal className="exp-item" key={`${item.company}-${i}`} delay={i * 0.04}>
+              <div className="exp-period mono">{item.period}</div>
+              <div className="exp-content">
+                <div className="exp-role">{item.role}</div>
+                <div className="exp-company mono">{item.company}</div>
+                <p className="exp-desc">{item.description}</p>
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
-      </motion.div>
+
+        <div className="exp-extra">
+          <Reveal className="exp-block">
+            <div className="exp-block-label">{e.eduLabel}</div>
+            {e.education.map((ed) => (
+              <div className="exp-edu-item" key={ed.course}>
+                <div className="exp-edu-course">{ed.course}</div>
+                <div className="exp-edu-place mono">{ed.place}</div>
+                <div className="exp-edu-period">{ed.period}</div>
+              </div>
+            ))}
+          </Reveal>
+
+          <Reveal className="exp-block" delay={0.06}>
+            <div className="exp-block-label">{e.talksLabel}</div>
+            <ul className="exp-talks">
+              {e.talks.map((talk) => <li key={talk}>{talk}</li>)}
+            </ul>
+          </Reveal>
+        </div>
+      </div>
     </section>
   );
-};
-
-export default Experience;
-
+}

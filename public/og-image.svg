@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#131417"/>
+  <g stroke="#262a30" stroke-width="1">
+    <line x1="0" y1="157" x2="1200" y2="157"/><line x1="0" y1="472" x2="1200" y2="472"/>
+    <line x1="80" y1="0" x2="80" y2="630"/><line x1="1120" y1="0" x2="1120" y2="630"/>
+  </g>
+  <polyline points="80,430 260,380 440,400 620,300 800,330 980,240 1120,260" fill="none" stroke="#a3a6ff" stroke-width="3"/>
+  <circle cx="620" cy="300" r="6" fill="#a3a6ff"/><circle cx="980" cy="240" r="6" fill="#a3a6ff"/>
+  <text x="80" y="150" font-family="'JetBrains Mono',monospace" font-size="22" letter-spacing="4" fill="#a3a6ff">// DESENVOLVEDOR FULL-STACK · DADOS &amp; IA</text>
+  <text x="78" y="300" font-family="'Space Grotesk',Arial,sans-serif" font-size="96" font-weight="700" fill="#ecedef" letter-spacing="-3">Arthur Padilha</text>
+  <text x="80" y="375" font-family="'Inter',Arial,sans-serif" font-size="34" fill="#b4b8bf">Transformo dados em produtos digitais.</text>
+  <text x="80" y="545" font-family="'JetBrains Mono',monospace" font-size="20" fill="#83888f">Recife, BR · React · FastAPI · Node.js · Python</text>
+</svg>

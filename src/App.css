@@ -1,10 +1,9 @@
-.App {
+.app {
   min-height: 100vh;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-section {
-  position: relative;
-  z-index: 1;
+.app main {
+  flex: 1;
 }
-
