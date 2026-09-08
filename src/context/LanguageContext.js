@@ -39,20 +39,20 @@ export const translations = {
         { t: '.' },
       ],
       subtitle:
-        'Desenvolvedor full-stack e estudante de Ciência da Computação (CESAR School). Construo aplicações web completas — do front-end em React a APIs em FastAPI e Node.js — com foco em dados, IA e código limpo.',
+        'Desenvolvedor full-stack e bacharel em Ciência da Computação (CESAR School). Construo aplicações web completas — do front-end em React a APIs em FastAPI e Node.js — com foco em dados, IA e código limpo.',
       ctaProjects: 'Ver projetos',
       ctaCv: 'Baixar CV',
       metrics: [
         { value: 'Recife, PE', label: 'Brasil' },
         { value: 'Front-end', label: '@ Seaway' },
-        { value: 'CC · 8º', label: 'CESAR School' },
+        { value: 'Bacharel', label: 'CESAR School' },
       ],
     },
     about: {
       eyebrow: 'Sobre',
       title: 'Sobre mim',
       bio: [
-        'Sou desenvolvedor e estudante de Ciência da Computação na CESAR School, em Recife. Trabalho como desenvolvedor front-end na Seaway e já atuei em estágio full-stack, criando APIs e interfaces em times ágeis.',
+        'Sou desenvolvedor e bacharel em Ciência da Computação pela CESAR School, em Recife. Trabalho como desenvolvedor front-end na Seaway e já atuei em estágio full-stack, criando APIs e interfaces em times ágeis.',
         'Meu foco é unir desenvolvimento web a dados: gosto de transformar dados brutos em produtos úteis, seja um dashboard de análise, um sistema acadêmico com autenticação e testes, ou uma ferramenta com IA. Valorizo código limpo, testável e bem documentado.',
       ],
       factsLabel: 'Perfil',
@@ -97,6 +97,8 @@ export const translations = {
         'nielsen-analytics/dashboard.png': 'Relatório gerado pelo CLI: violações por passo, severidade e a evidência capturada pelo Playwright.',
         'nielsen-analytics/achados.png': 'Lista de violações de um passo: heurística de Nielsen, severidade, seletor do elemento e o trecho de código sugerido para corrigir.',
         'mirai/chat.png': 'Conversa com a IA montando uma cesta dentro do orçamento, com a justificativa de cada produto.',
+        'entregadores/dashboard.png': 'Dashboard da operação: total de entregas, taxa de sucesso, tempo médio e os entregadores com melhor aproveitamento.',
+        'entregadores/mapa.png': 'Heat map das rotas em Leaflet: coletas, entregas e densidade por distrito postal de Dublin.',
       },
       items: {
         'portal-professor': {
@@ -511,7 +513,7 @@ export const translations = {
       ],
       eduLabel: 'Formação',
       education: [
-        { course: 'Bacharelado em Ciência da Computação', place: 'CESAR School', period: '2022 — cursando (8º período)' },
+        { course: 'Bacharelado em Ciência da Computação', place: 'CESAR School', period: 'Fev/2022 — Jun/2026 (concluído)' },
         { course: 'Ensino Médio', place: 'Colégio Motivo', period: 'Concluído em 2020' },
       ],
     },
@@ -568,20 +570,20 @@ export const translations = {
         { t: '.' },
       ],
       subtitle:
-        'Full-stack developer and Computer Science student (CESAR School). I build complete web applications — from React front-ends to FastAPI and Node.js APIs — focused on data, AI and clean code.',
+        'Full-stack developer with a B.Sc. in Computer Science (CESAR School). I build complete web applications — from React front-ends to FastAPI and Node.js APIs — focused on data, AI and clean code.',
       ctaProjects: 'View projects',
       ctaCv: 'Download CV',
       metrics: [
         { value: 'Recife, PE', label: 'Brazil' },
         { value: 'Front-end', label: '@ Seaway' },
-        { value: 'CS · 8th', label: 'CESAR School' },
+        { value: 'B.Sc.', label: 'CESAR School' },
       ],
     },
     about: {
       eyebrow: 'About',
       title: 'About me',
       bio: [
-        "I'm a developer and Computer Science student at CESAR School in Recife. I work as a front-end developer at Seaway and previously did a full-stack internship, building APIs and interfaces in agile teams.",
+        "I'm a developer with a B.Sc. in Computer Science from CESAR School in Recife. I work as a front-end developer at Seaway and previously did a full-stack internship, building APIs and interfaces in agile teams.",
         'My focus is blending web development with data: I like turning raw data into useful products — an analytics dashboard, an academic system with auth and tests, or an AI-powered tool. I value clean, testable and well-documented code.',
       ],
       factsLabel: 'Profile',
@@ -626,6 +628,8 @@ export const translations = {
         'nielsen-analytics/dashboard.png': 'The report the CLI generates: violations per step, severity and the evidence Playwright captured.',
         'nielsen-analytics/achados.png': 'The violation list for a single step: Nielsen heuristic, severity, element selector and the suggested code fix.',
         'mirai/chat.png': 'The AI building a basket within budget, with the reasoning behind each product.',
+        'entregadores/dashboard.png': 'Operations dashboard: total deliveries, success rate, average time and the best-performing drivers.',
+        'entregadores/mapa.png': 'Route heat map on Leaflet: pickups, deliveries and density across Dublin postal districts.',
       },
       items: {
         'portal-professor': {
@@ -1040,7 +1044,7 @@ export const translations = {
       ],
       eduLabel: 'Education',
       education: [
-        { course: 'B.Sc. in Computer Science', place: 'CESAR School', period: '2022 — ongoing (8th semester)' },
+        { course: 'B.Sc. in Computer Science', place: 'CESAR School', period: 'Feb/2022 — Jun/2026 (completed)' },
         { course: 'High School', place: 'Colégio Motivo', period: 'Completed in 2020' },
       ],
     },

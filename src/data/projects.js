@@ -39,23 +39,21 @@ export const projects = [
     year: null,
     image: 'mirai/chat.png',
     gallery: [],
-    // TODO: add repo + demo when available (private for now).
-    repoUrl: null,
+    repoUrl: 'https://github.com/P4d1lh4/Mirai-Compra-Inteligente',
     demoUrl: null,
     tech: ['Next.js', 'React', 'FastAPI', 'Python', 'Tailwind CSS', 'SQLite', 'Docker', 'Groq API', 'SerpApi'],
   },
 
-  // --- Ready to publish: flip status to 'published' when you want them shown ---
   {
     slug: 'entregadores',
-    status: 'draft',
+    status: 'published',
     featured: false,
     year: '2025',
-    image: null,
-    gallery: [],
+    image: 'entregadores/dashboard.png',
+    gallery: ['entregadores/mapa.png'],
     repoUrl: 'https://github.com/P4d1lh4/Projeto-para-entregadores',
     demoUrl: null,
-    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Leaflet', 'OpenAI', 'Recharts'],
+    tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Supabase', 'Leaflet', 'OpenAI', 'Recharts'],
   },
 ];
 
