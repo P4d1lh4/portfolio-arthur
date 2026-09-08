@@ -304,6 +304,91 @@ export const translations = {
             ],
           },
         },
+        'e-do': {
+          category: 'Saúde pública · IA · API',
+          title: 'e-DO — Motor de IA para a Declaração de Óbito digital',
+          description:
+            'Serviço de IA de uma proposta de digitalização da Declaração de Óbito no SUS: busca de códigos CID-11 em linguagem natural, validação da cadeia causal do óbito e assistente clínico com Gemini, expostos em uma API FastAPI.',
+          highlights: [
+            'Busca CID-11 em linguagem natural com score de confiança',
+            'Validação da cadeia causal com regras clínicas e biológicas',
+            'Assistente com Gemini para sugerir e explicar códigos',
+            'API FastAPI documentada, com testes em pytest e Docker',
+          ],
+          detail: {
+            tagline:
+              'A Declaração de Óbito no Brasil ainda é papel. Este serviço é a parte que entende o que o médico escreveu e confere se a sequência de causas faz sentido.',
+            summary: [
+              'O e-DO é uma proposta de digitalização da Declaração de Óbito para o SUS, construída por uma equipe de três pessoas dentro da TeleClinic, iniciativa própria de projetos para saúde pública. Eu fui responsável pelo serviço de IA: o microsserviço em Python que o back-end consulta para codificar causas de morte e validar a declaração antes de ela seguir.',
+              'O médico escreve "infarto" e recebe o código CID-11 correspondente com um score de confiança. Depois, a cadeia de causas passa por regras estruturais, lógicas e biológicas, e um assistente com Gemini explica o que está inconsistente. A base de códigos usada no desenvolvimento é uma amostra gerada por script, não a tabela oficial completa.',
+            ],
+            how: [
+              {
+                t: 'Busca CID-11',
+                d: 'Os códigos são carregados em memória na inicialização e a busca usa RapidFuzz, com mínimo de três caracteres, cinco resultados no máximo e score de 0 a 100. Meta de resposta abaixo de 500 ms, com cache de uma hora para consultas repetidas.',
+              },
+              {
+                t: 'Validação da cadeia causal',
+                d: 'Cada causa tem um tipo, como imediata ou básica, e um tempo aproximado. O serviço confere a estrutura, a ordem lógica entre as causas e regras biológicas: causa materna em paciente do sexo masculino ou fora do período fértil, idade incompatível com a causa declarada.',
+              },
+              {
+                t: 'Assistente com Gemini',
+                d: 'Endpoints para chat, sugestão de CID a partir de uma descrição, validação da cadeia com explicação em texto, interpretação de texto clínico e explicação de um código. Modelo gemini-1.5-flash com temperatura baixa, para resposta previsível.',
+              },
+              {
+                t: 'Contrato de API',
+                d: 'FastAPI com schemas Pydantic para entrada e saída, Swagger gerado automaticamente e endpoints de health, readiness e liveness para orquestração em Kubernetes. Os dois back-ends em Node.js do time consomem esse contrato.',
+              },
+              {
+                t: 'Testes',
+                d: 'Suíte em pytest cobrindo busca, validação, integridade dos dados, cenários de integração e as regras da terceira fase, com cobertura medida.',
+              },
+            ],
+            stack: [
+              {
+                g: 'Serviço',
+                items: [
+                  { n: 'Python + FastAPI', d: 'API assíncrona com documentação OpenAPI gerada.' },
+                  { n: 'Pydantic', d: 'Validação e serialização de toda entrada e saída.' },
+                  { n: 'RapidFuzz', d: 'Busca fuzzy dos códigos CID-11 em memória.' },
+                  { n: 'Loguru', d: 'Logs estruturados, com nível configurável por ambiente.' },
+                ],
+              },
+              {
+                g: 'IA',
+                items: [
+                  { n: 'Google Gemini API', d: 'Chat, sugestão de CID, validação explicada e interpretação de texto clínico.' },
+                ],
+              },
+              {
+                g: 'Operação',
+                items: [
+                  { n: 'Docker + Docker Compose', d: 'Container com usuário não-root e perfil de desenvolvimento com hot reload.' },
+                  { n: 'Health checks', d: 'Endpoints de readiness e liveness para Kubernetes.' },
+                  { n: 'pytest', d: 'Testes de busca, validação, dados e integração, com cobertura.' },
+                ],
+              },
+            ],
+            build: [
+              {
+                t: 'Separei regra de IA',
+                d: 'A validação da cadeia causal é código determinístico com regras explícitas. O Gemini entra depois, para explicar e sugerir, nunca para decidir se a declaração é válida.',
+              },
+              {
+                t: 'Mantive a busca em memória',
+                d: 'A tabela de códigos cabe em RAM e a latência importa mais que a flexibilidade de um banco. Carregar no startup e buscar com RapidFuzz atende a meta de 500 ms sem infraestrutura extra.',
+              },
+              {
+                t: 'Escrevi o contrato antes do consumo',
+                d: 'Os schemas Pydantic e o Swagger foram o acordo com os outros dois desenvolvedores do time. Cada um integrou contra a documentação, sem depender de conversa.',
+              },
+              {
+                t: 'Deixei a base trocável',
+                d: 'A base CID-11 usada é uma amostra gerada por script. O carregador aceita a tabela oficial em CSV quando ela entrar, sem mudar a busca.',
+              },
+            ],
+          },
+        },
         mirai: {
           category: 'IA · Full-stack',
           title: 'Mirai — Assistente de Compras com IA',
@@ -831,6 +916,91 @@ export const translations = {
               {
                 t: 'I wrote the dashboard',
                 d: 'Single-file HTML, no build and no server, so the report can be attached and opened anywhere.',
+              },
+            ],
+          },
+        },
+        'e-do': {
+          category: 'Public health · AI · API',
+          title: 'e-DO — AI engine for the digital death certificate',
+          description:
+            'The AI service of a proposal to digitize the death certificate in the Brazilian public health system (SUS): natural-language ICD-11 search, causal-chain validation and a clinical assistant powered by Gemini, exposed through a FastAPI service.',
+          highlights: [
+            'Natural-language ICD-11 search with a confidence score',
+            'Causal-chain validation with clinical and biological rules',
+            'Gemini assistant that suggests and explains codes',
+            'Documented FastAPI service with pytest and Docker',
+          ],
+          detail: {
+            tagline:
+              'Death certificates in Brazil are still paper. This service is the part that understands what the physician wrote and checks whether the sequence of causes makes sense.',
+            summary: [
+              'e-DO is a proposal to digitize the death certificate for SUS, built by a team of three inside TeleClinic, our own initiative for public-health projects. I owned the AI service: the Python microservice the back-end calls to code causes of death and validate the certificate before it moves on.',
+              'The physician types "heart attack" and gets the matching ICD-11 code with a confidence score. The chain of causes then goes through structural, logical and biological rules, and a Gemini assistant explains what is inconsistent. The code table used during development is a script-generated sample, not the full official table.',
+            ],
+            how: [
+              {
+                t: 'ICD-11 search',
+                d: 'Codes are loaded into memory at startup and searched with RapidFuzz: three characters minimum, five results at most, score from 0 to 100. Target response under 500 ms, with a one-hour cache for repeated queries.',
+              },
+              {
+                t: 'Causal-chain validation',
+                d: 'Each cause has a type, such as immediate or underlying, and an approximate interval. The service checks structure, the logical order between causes and biological rules: a maternal cause in a male patient or outside the fertile age range, an age incompatible with the declared cause.',
+              },
+              {
+                t: 'Gemini assistant',
+                d: 'Endpoints for chat, ICD suggestion from a description, chain validation with a written explanation, clinical-text interpretation and code explanation. Model gemini-1.5-flash at a low temperature, for predictable answers.',
+              },
+              {
+                t: 'API contract',
+                d: 'FastAPI with Pydantic schemas for input and output, auto-generated Swagger and health, readiness and liveness endpoints for Kubernetes. The two Node.js back-ends on the team consume this contract.',
+              },
+              {
+                t: 'Tests',
+                d: 'A pytest suite covering search, validation, data integrity, integration scenarios and the phase-three rules, with coverage measured.',
+              },
+            ],
+            stack: [
+              {
+                g: 'Service',
+                items: [
+                  { n: 'Python + FastAPI', d: 'Async API with generated OpenAPI docs.' },
+                  { n: 'Pydantic', d: 'Validation and serialization of every input and output.' },
+                  { n: 'RapidFuzz', d: 'Fuzzy search over the in-memory ICD-11 codes.' },
+                  { n: 'Loguru', d: 'Structured logs with a per-environment level.' },
+                ],
+              },
+              {
+                g: 'AI',
+                items: [
+                  { n: 'Google Gemini API', d: 'Chat, ICD suggestion, explained validation and clinical-text interpretation.' },
+                ],
+              },
+              {
+                g: 'Operations',
+                items: [
+                  { n: 'Docker + Docker Compose', d: 'Non-root container plus a dev profile with hot reload.' },
+                  { n: 'Health checks', d: 'Readiness and liveness endpoints for Kubernetes.' },
+                  { n: 'pytest', d: 'Search, validation, data and integration tests, with coverage.' },
+                ],
+              },
+            ],
+            build: [
+              {
+                t: 'I kept rules apart from AI',
+                d: 'Causal-chain validation is deterministic code with explicit rules. Gemini comes afterwards, to explain and suggest, never to decide whether the certificate is valid.',
+              },
+              {
+                t: 'I kept the search in memory',
+                d: 'The code table fits in RAM and latency matters more than the flexibility of a database. Loading at startup and searching with RapidFuzz meets the 500 ms target with no extra infrastructure.',
+              },
+              {
+                t: 'I wrote the contract before the consumers',
+                d: 'The Pydantic schemas and the Swagger were the agreement with the other two developers on the team. Each integrated against the docs, without depending on conversation.',
+              },
+              {
+                t: 'I made the dataset swappable',
+                d: 'The ICD-11 table in use is a script-generated sample. The loader accepts the official CSV table when it arrives, with no change to the search.',
               },
             ],
           },

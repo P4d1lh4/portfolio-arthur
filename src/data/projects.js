@@ -22,6 +22,17 @@ export const projects = [
     tech: ['React', 'TypeScript', 'Vite', 'FastAPI', 'Supabase', 'JWT', 'Docker', 'GitHub Actions'],
   },
   {
+    slug: 'e-do',
+    status: 'published',
+    featured: true,
+    year: '2026',
+    image: null,
+    gallery: [],
+    repoUrl: null, // repositório privado da equipe (TeleClinic)
+    demoUrl: null,
+    tech: ['Python', 'FastAPI', 'Pydantic', 'RapidFuzz', 'Google Gemini API', 'Docker', 'pytest'],
+  },
+  {
     slug: 'nielsen-analytics',
     status: 'published',
     featured: true,
