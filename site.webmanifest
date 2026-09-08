@@ -1,0 +1,12 @@
+{
+  "name": "Arthur Padilha — Desenvolvedor Full-Stack",
+  "short_name": "Arthur Padilha",
+  "description": "Portfólio de Arthur Padilha, desenvolvedor full-stack em Recife.",
+  "start_url": "/portfolio-arthur/",
+  "display": "standalone",
+  "background_color": "#131417",
+  "theme_color": "#4F46E5",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
