@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FaGithub, FaExternalLinkAlt, FaArrowLeft } from 'react-icons/fa';
+import { FiGithub, FiArrowUpRight, FiArrowLeft } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { projects as projectData } from '../data/projects';
 import Reveal from '../components/Reveal';
@@ -27,11 +27,11 @@ function Shot({ file, alt, caption, priority = false }) {
 
 function NotFound({ d }) {
   return (
-    <section className="section">
-      <div className="container pd-empty">
-        <h1 className="h2">{d.notFoundTitle}</h1>
-        <p className="lead">{d.notFoundText}</p>
-        <Link className="btn btn--primary" to="/projetos">{d.notFoundCta}</Link>
+    <section className="pd">
+      <div className="column pd-empty">
+        <h1 className="pd-title">{d.notFoundTitle}</h1>
+        <p className="pd-lead">{d.notFoundText}</p>
+        <Link className="pill pill--solid" to="/" state={{ section: 'projetos' }}>{d.notFoundCta}</Link>
       </div>
     </section>
   );
@@ -59,17 +59,17 @@ export default function ProjectDetail() {
   const captions = t.projects.shots || {};
 
   return (
-    <article className="section pd">
-      <div className="container container--wide">
-        <Link className="pd-back" to="/projetos">
-          <FaArrowLeft /> {d.back}
+    <article className="pd">
+      <div className="column">
+        <Link className="pd-back" to="/" state={{ section: 'projetos' }}>
+          <FiArrowLeft /> {d.back}
         </Link>
 
         <Reveal className="pd-head">
           <div className="pd-head-main">
-            <span className="eyebrow">{copy.category}</span>
+            <span className="pd-eyebrow mono">{copy.category}</span>
             <h1 className="pd-title">{copy.title}</h1>
-            <p className="lead pd-tagline">{detail.tagline}</p>
+            <p className="pd-lead">{detail.tagline}</p>
           </div>
 
           <aside className="pd-meta">
@@ -81,13 +81,13 @@ export default function ProjectDetail() {
             )}
             <div className="pd-meta-links">
               {project.repoUrl && (
-                <a className="btn btn--ghost btn--sm" href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                  <FaGithub /> {t.projects.viewCode}
+                <a className="pill pill--ghost" href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+                  <FiGithub /> {t.projects.viewCode}
                 </a>
               )}
               {project.demoUrl && (
-                <a className="btn btn--primary btn--sm" href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                  {t.projects.viewDemo} <FaExternalLinkAlt />
+                <a className="pill pill--solid" href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                  {t.projects.viewDemo} <FiArrowUpRight />
                 </a>
               )}
               {!project.repoUrl && !project.demoUrl && (
@@ -104,12 +104,12 @@ export default function ProjectDetail() {
         )}
 
         <Reveal as="section" className="pd-block pd-prose">
-          <h2 className="h2">{d.summaryTitle}</h2>
-          {detail.summary.map((p) => <p className="lead" key={p.slice(0, 40)}>{p}</p>)}
+          <h2 className="block-title">{d.summaryTitle}</h2>
+          {detail.summary.map((p) => <p key={p.slice(0, 40)}>{p}</p>)}
         </Reveal>
 
         <section className="pd-block">
-          <Reveal><h2 className="h2">{d.howTitle}</h2></Reveal>
+          <Reveal><h2 className="block-title">{d.howTitle}</h2></Reveal>
           <ol className="pd-flow">
             {detail.how.map((step, i) => (
               <Reveal as="li" className="pd-step" key={step.t} delay={i * 0.04}>
@@ -124,7 +124,7 @@ export default function ProjectDetail() {
         </section>
 
         <section className="pd-block">
-          <Reveal><h2 className="h2">{d.stackTitle}</h2></Reveal>
+          <Reveal><h2 className="block-title">{d.stackTitle}</h2></Reveal>
           <div className="pd-stack">
             {detail.stack.map((group, i) => (
               <Reveal className="pd-stack-group" key={group.g} delay={i * 0.04}>
@@ -143,7 +143,7 @@ export default function ProjectDetail() {
         </section>
 
         <section className="pd-block">
-          <Reveal><h2 className="h2">{d.buildTitle}</h2></Reveal>
+          <Reveal><h2 className="block-title">{d.buildTitle}</h2></Reveal>
           <div className="pd-build">
             {detail.build.map((item, i) => (
               <Reveal className="pd-build-item" key={item.t} delay={i * 0.04}>
@@ -156,7 +156,7 @@ export default function ProjectDetail() {
 
         {project.gallery.length > 0 && (
           <section className="pd-block">
-            <Reveal><h2 className="h2">{d.galleryTitle}</h2></Reveal>
+            <Reveal><h2 className="block-title">{d.galleryTitle}</h2></Reveal>
             <div className="pd-gallery">
               {project.gallery.map((file, i) => (
                 <Reveal key={file} delay={i * 0.04}>
