@@ -85,3 +85,15 @@
 .island-tool svg { width: 14px; height: 14px; }
 .island-tool span { color: var(--island-muted); }
 .island-tool span[data-on='true'] { color: var(--island-ink); }
+
+/* ---------- Mascot ---------- */
+.bot { width: 22px; height: 22px; flex-shrink: 0; margin-left: -6px; overflow: visible; }
+.bot-body { fill: var(--island-ink); transition: fill 0.25s var(--ease); }
+.bot-eyes { transition: transform 0.18s ease-out; }
+.bot-eye { fill: var(--island-bg); transform-box: fill-box; transform-origin: center; }
+.bot-eye--blink { animation: bot-blink 4.2s infinite; }
+@keyframes bot-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+.island-bar:hover .bot-body { fill: var(--live); }

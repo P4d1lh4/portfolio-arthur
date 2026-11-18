@@ -5,6 +5,7 @@ import { FiChevronDown, FiMoon, FiSun, FiDownload } from 'react-icons/fi';
 import { useLanguage } from '../../context/LanguageContext';
 import { SECTION_IDS } from '../../data/ui';
 import useActiveSection from '../../hooks/useActiveSection';
+import Bot from './Bot';
 import './Island.css';
 
 const RING_RADIUS = 7;
@@ -83,6 +84,7 @@ export default function Island({ theme, toggleTheme }) {
           aria-label={open ? t.ui.closeMenu : t.ui.menu}
         >
           <span className="island-label">
+            <Bot excited={open} />
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.span
                 key={label}
