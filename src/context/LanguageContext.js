@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react';
+import { ui } from '../data/ui';
 
 const LanguageContext = createContext();
 
@@ -1257,8 +1258,13 @@ export const LanguageProvider = ({ children }) => {
     setLanguage((prev) => (prev === 'pt' ? 'en' : 'pt'));
   }, []);
 
+  const value = useMemo(
+    () => ({ language, t: { ...translations[language], ui: ui[language] }, toggleLanguage }),
+    [language, toggleLanguage],
+  );
+
   return (
-    <LanguageContext.Provider value={{ language, t: translations[language], toggleLanguage }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );

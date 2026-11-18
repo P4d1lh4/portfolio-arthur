@@ -1,55 +1,42 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import './App.css';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
-import Nav from './components/Nav/Nav';
-import Footer from './components/Footer/Footer';
+import useTheme from './hooks/useTheme';
+import Island from './components/Island/Island';
+import Footer from './components/Footer';
 import Home from './pages/Home';
-import About from './components/About/About';
-import Experience from './components/Experience/Experience';
-import Projects from './components/Projects/Projects';
 import ProjectDetail from './pages/ProjectDetail';
-import Contact from './components/Contact/Contact';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
-
-function TitleUpdater() {
-  const { t } = useLanguage();
-  const { pathname } = useLocation();
-  useEffect(() => {
-    // Project detail pages set their own title (they know the project name).
-    if (pathname.startsWith('/projetos/')) return;
-    const link = t.nav.links.find((l) => l.path !== '/' && pathname === l.path);
-    document.title = link ? `${link.label} — ${t.docTitle}` : t.docTitle;
-  }, [t, pathname]);
+    if (!state?.section) window.scrollTo(0, 0);
+  }, [pathname, state]);
   return null;
 }
 
 function AppContent() {
   const { t } = useLanguage();
+  const { pathname } = useLocation();
+  const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    // Project pages set their own title (they know the project name).
+    if (!pathname.startsWith('/projetos/')) document.title = t.docTitle;
+  }, [t.docTitle, pathname]);
+
   return (
-    <div className="app">
+    <>
       <a className="skip-link" href="#conteudo">{t.nav.skip}</a>
-      <Nav />
+      <Island theme={theme} toggleTheme={toggleTheme} />
       <main id="conteudo">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sobre" element={<About />} />
-          <Route path="/experiencias" element={<Experience />} />
-          <Route path="/projetos" element={<Projects />} />
           <Route path="/projetos/:slug" element={<ProjectDetail />} />
-          <Route path="/contato" element={<Contact />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
 
@@ -58,7 +45,6 @@ export default function App() {
     <LanguageProvider>
       <Router basename="/portfolio-arthur">
         <ScrollToTop />
-        <TitleUpdater />
         <AppContent />
       </Router>
     </LanguageProvider>

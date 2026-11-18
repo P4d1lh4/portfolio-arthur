@@ -1,7 +1,8 @@
 # Portfólio — Arthur Padilha
 
-Portfólio pessoal construído em React (5 páginas). Design "Instrument": grafite escuro editorial,
-tipografia forte e foco em dados. Bilíngue (PT/EN), acessível e otimizado para SEO/compartilhamento.
+Portfólio pessoal em React, numa página única com estudos de caso por projeto. Design "Mono": quase preto,
+coluna estreita, navegação por uma "ilha" flutuante que mostra a seção atual e o progresso de leitura.
+Tema escuro e claro, bilíngue (PT/EN), acessível e otimizado para SEO/compartilhamento.
 
 **Ao vivo:** https://p4d1lh4.github.io/portfolio-arthur
 
@@ -13,7 +14,7 @@ tipografia forte e foco em dados. Bilíngue (PT/EN), acessível e otimizado para
 - **React 18** (Create React App)
 - **Framer Motion** — animações de scroll (respeita `prefers-reduced-motion`)
 - **React Icons**
-- **Space Grotesk / Inter / JetBrains Mono** (Google Fonts)
+- **Geist / Geist Mono** (Google Fonts)
 
 ## Rodar localmente
 
@@ -27,21 +28,23 @@ npm run deploy   # publica em gh-pages
 ## Estrutura
 
 ```
-public/            index.html (SEO/OG/JSON-LD), favicon.svg, robots.txt,
-                   sitemap.xml, site.webmanifest, og-image.svg,
-                   Arthur-Padilha-CV.pdf, projects/ (screenshots)
+public/              index.html (SEO/OG/JSON-LD), favicon, CV, projects/ (screenshots)
 src/
-  index.css        design system (tokens, base, utilitários)
-  App.js           Router (/, /sobre, /experiencias, /projetos, /contato)
-  pages/Home.js    Hero + Skills + cards Explore
-  context/         LanguageContext (PT/EN)
-  data/projects.js metadados dos projetos (links, stack, imagens)
-  components/       Nav, Hero, About, Skills, Projects, Experience, Contact, Footer
+  index.css          tokens (escuro e claro), base, botões, rodapé
+  App.js             Router: /projetos/:slug vai para o estudo de caso, o resto para a Home
+  pages/Home.js      página única; /sobre, /experiencias, /projetos e /contato rolam até a seção
+  pages/ProjectDetail.js  estudo de caso de cada projeto
+  components/Island/ ilha de navegação (seção atual, % lido, idioma, tema, CV)
+  components/home/   Intro, seções (experiência, projetos, stack, formação, contato), CopyEmail
+  hooks/             useTheme, useActiveSection
+  context/           LanguageContext (textos longos PT/EN)
+  data/ui.js         textos novos da interface, ids das seções e dados de contato
+  data/projects.js   metadados dos projetos (links, stack, imagens)
 ```
 
 ## Como manter
 
-- **Textos:** `src/context/LanguageContext.js` (PT e EN lado a lado).
+- **Textos:** `src/context/LanguageContext.js` (PT e EN lado a lado); textos curtos da interface em `src/data/ui.js`.
 - **Projetos:** `src/data/projects.js`. Só entra no site quem tem `status: 'published'`.
   Para mostrar um projeto pronto (ex. `entregadores`), mude `status` para `'published'`.
 - **Screenshot de projeto:** coloque a imagem em `public/projects/` (ex. `portal-professor.png`)
